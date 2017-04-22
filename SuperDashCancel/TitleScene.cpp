@@ -12,6 +12,14 @@ TitleScene::~TitleScene()
 {
 }
 
+void TitleScene::Init() 
+{
+}
+
+void TitleScene::Terminate()
+{
+}
+
 void TitleScene::Draw()
 {
 }

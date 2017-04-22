@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 #include "TitleScene.h"
-#define TIMESTEP 0.01666666666 //60 fps
+#define TIMESTEP 0.016666666666666667 //60 fps
 #define FPSSMOOTHING 0 // fps smooth weight
 class App
 {

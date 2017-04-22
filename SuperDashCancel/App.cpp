@@ -63,4 +63,7 @@ App::~App()
 
 void App::SwitchScene(Scene * s)
 {
+	ActiveScene->Terminate();
+	ActiveScene = s;
+	ActiveScene->Init();
 }
