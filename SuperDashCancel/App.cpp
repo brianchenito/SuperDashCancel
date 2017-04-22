@@ -20,6 +20,8 @@ App::App()
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
 
+	TitleScreen = new TitleScene();
+	ActiveScene = TitleScreen;
 
 }
 
@@ -48,6 +50,7 @@ void App::Step()
 
 void App::FixedStep()
 {
+	//std::cout << "ticktest\n";
 	LastFixedTime+=TIMESTEP;
 	if (ActiveScene)ActiveScene->OnFixedUpdate();
 }
@@ -56,4 +59,8 @@ void App::FixedStep()
 App::~App()
 {
 	glfwTerminate();
+}
+
+void App::SwitchScene(Scene * s)
+{
 }
