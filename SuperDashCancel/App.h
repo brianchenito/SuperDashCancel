@@ -25,12 +25,12 @@ private:
 	Scene* TitleScreen;
 	Scene* MainMenu;
 	Scene* GamePlay;
-
+	
 	FT_Library library;
 	FT_Face face;
 	FT_Error ft_err;
-	const char face_path[36] = "SuperDashCancel/fonts/CODE_Bold.otf";
-
+	const char face_path[39] = "../SuperDashCancel/fonts/CODE_Bold.otf";
+	
 public:
 	GLFWwindow* window;
 	Scene* ActiveScene;

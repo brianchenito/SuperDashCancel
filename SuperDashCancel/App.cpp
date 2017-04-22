@@ -21,10 +21,12 @@ App::App()
 	glfwMakeContextCurrent(window);
 	
 	/* FreeType Init */
+
 	ft_err = FT_Init_FreeType(&library);
 	if (ft_err) {
 		throw "FreeType failed to initialize";
 	}
+	
 	ft_err = FT_New_Face(library, face_path, 0, &face);
 	if (ft_err) {
 		throw "FreeType failed to load font at specified location";
