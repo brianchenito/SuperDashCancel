@@ -79,10 +79,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\SuperDashCancel\glfw\include;C:\Users\brian_000\Documents\GitHub\SuperDashCancel\SuperDashCancel\freetype-2.7.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SuperDashCancel\glfw\include;..\SuperDashCancel\freetype-2.7.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>..\SuperDashCancel\glfw\lib-vc2015;C:\Users\brian_000\Documents\GitHub\SuperDashCancel\SuperDashCancel\freetype-2.7.1\objs\vc2010\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\SuperDashCancel\glfw\lib-vc2015;..\SuperDashCancel\freetype-2.7.1\objs\vc2010\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glfw3dll.lib;msvcrt.lib;msvcmrt.lib;freetype271d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -105,12 +105,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\SuperDashCancel\glfw\include;C:\Users\brian_000\Documents\GitHub\SuperDashCancel\SuperDashCancel\freetype-2.7.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SuperDashCancel\glfw\include;..\SuperDashCancel\freetype-2.7.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\SuperDashCancel\glfw\lib-vc2015;C:\Users\brian_000\Documents\GitHub\SuperDashCancel\SuperDashCancel\freetype-2.7.1\objs\vc2010\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\SuperDashCancel\glfw\lib-vc2015;..\SuperDashCancel\freetype-2.7.1\objs\vc2010\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glfw3dll.lib;msvcrt.lib;msvcmrt.lib;freetype271d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
