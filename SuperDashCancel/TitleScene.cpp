@@ -33,6 +33,3 @@ void TitleScene::OnFixedUpdate()
 	std::cout << "mainmenutick\n";
 }
 
-void TitleScene::JoystickPlugUnplugCB(int joy, int event)
-{
-}

@@ -10,6 +10,5 @@ public:
 	void Draw();
 	void OnUpdate();
 	void OnFixedUpdate();
-	void JoystickPlugUnplugCB(int joy, int event);
 };
 

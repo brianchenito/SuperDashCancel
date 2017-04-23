@@ -15,25 +15,26 @@ class Button : public Drawable
 	float size;
 
 	//Pointers to adjacent buttons
-	Button* Above;
-	Button* Below;
-	Button* Left;
-	Button* Right;
+	const Button* Above;
+	const Button* Below;
+	const Button* Left;
+	const Button* Right;
 
 	//Background images
-	const GLFWimage* im_default;
-	const GLFWimage* im_selected;
+	GLuint tex_id;
+	GLuint alt_tex_id;
 	bool selected;
 
 	//OnPress delegate
 	void(*OnPress)() = 0;
 
 	void AttachCallback(void(*callback_func)());
+	void AttachNeighbors(const Button* above = 0, const Button* below = 0, const Button* left = 0, const Button* right = 0);
 	void SetTextAttr(string _text, Color _color, float _size);
 	void Draw();
 
 	Button();
-	Button(Vec2 _pos, Vec2 _scale, const GLFWimage& defaultImage, const GLFWimage& selectedImage, void(*callback_func)() = 0);
+	Button(Vec2 _pos, Vec2 _scale, GLuint _tex_id, GLuint _alt_tex_id, void(*callback_func)() = 0);
 	~Button();
 };
 
