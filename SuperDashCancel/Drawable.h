@@ -1,6 +1,7 @@
 #pragma once
-#include <GLFW/glfw3.h>
+
 #include <stb_image.h>
+#include <GLFW/glfw3.h>
 #include "Vec2.h"
 #include "Vec3.h"
 #include "Color.h"
