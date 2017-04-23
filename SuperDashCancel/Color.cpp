@@ -11,13 +11,15 @@ Color::Color(const Color & copy)
 	r = copy.r;
 	g = copy.g;
 	b = copy.b;
+	a = copy.a;
 }
 
-Color::Color(unsigned char _r, unsigned char _b, unsigned char _g)
+Color::Color(GLbyte _r, GLbyte _b, GLbyte _g, GLbyte _a)
 {
 	r = _r;
 	g = _g;
 	b = _b;
+	a = _a;
 }
 
 

@@ -1,12 +1,13 @@
 #pragma once
+#include <GLFW/glfw3.h>
 class Color
 {
 public:
-	unsigned char r, b, g;
+	GLbyte r, b, g, a;
 
 	Color();
 	Color(const Color& copy);
-	Color(unsigned char _r, unsigned char _b, unsigned char _g);
+	Color(GLbyte _r, GLbyte _b, GLbyte _g, GLbyte _a);
 	~Color();
 };
 
