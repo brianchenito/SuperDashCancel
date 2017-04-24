@@ -1,11 +1,11 @@
 #pragma once
 #include <iostream>
 #include <GLFW/glfw3.h>
-
+#include "InputManager.h"
 class Scene
 {public:
-
-	Scene();
+	InputManager* inputmanager;
+	Scene(InputManager* m);
 	~Scene();
 
 	virtual void Init() = 0;

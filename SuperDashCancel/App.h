@@ -9,7 +9,7 @@
 #include <vector>
 #include "TitleScene.h"
 #define TIMESTEP 0.016666666666666667 //60 fps
-#define FPSSMOOTHING 0 // fps smooth weight
+#include "InputManager.h"
 class App
 {
 private:
@@ -34,6 +34,7 @@ private:
 	const char face_path[39] = "../SuperDashCancel/fonts/CODE_Bold.otf";
 	
 public:
+	InputManager* inputmanager;
 	GLFWwindow* window;
 	Scene* ActiveScene;
 	App();

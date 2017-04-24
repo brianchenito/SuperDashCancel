@@ -3,7 +3,7 @@
 class TitleScene :public Scene
 {
 public:
-	TitleScene();
+	TitleScene(InputManager* m);
 	~TitleScene();
 	void Init();
 	void Terminate();

@@ -4,6 +4,7 @@
 
 App::App()
 {
+
 	LastFrameTime = 0.0;
 	LastFixedTime = 0.0;
 	/* Initialize the library */
@@ -35,10 +36,12 @@ App::App()
 	}
 	
 	/* Scene Init */
-	TitleScreen = new TitleScene();
-	ActiveScene = TitleScreen;
+	inputmanager = new InputManager(window);
 
+	TitleScreen = new TitleScene(inputmanager);
+	ActiveScene = TitleScreen;
 	ActiveScene->Init();
+	
 }
 
 void App::Render()
@@ -68,12 +71,18 @@ void App::FixedStep()
 {
 	//std::cout << "ticktest\n";
 	LastFixedTime+=TIMESTEP;
+	inputmanager->FixedStep();
 	if (ActiveScene)ActiveScene->OnFixedUpdate();
 }
 
 
 App::~App()
 {
+	delete TitleScreen;
+	delete MainMenu;
+	delete GamePlay;
+	//delet this
+	delete inputmanager;
 	glfwTerminate();
 }
 
