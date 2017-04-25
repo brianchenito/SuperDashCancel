@@ -1,15 +1,15 @@
 #pragma once
-
-//#define STB_DEFINE
-//#include <stb.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#define TIMESTEP 0.016666666666666667 //60 fps
 #include <iostream>
 #include <vector>
 #include "TitleScene.h"
-#define TIMESTEP 0.016666666666666667 //60 fps
 #include "InputManager.h"
+#include <algorithm>    // std::max
+
 class App
 {
 private:
@@ -42,6 +42,8 @@ public:
 	void SwitchScene(Scene* s); //kill current scene, fire up new one
 	/*Step fires as fast as your computer will allow, and is used for rendering. main loop.*/
 	void Step();
-
+	void GLFWInitialize();
+	void GLUTInitialize();
+	void FreeTypeInitialize();
 };
 
