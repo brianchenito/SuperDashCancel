@@ -22,6 +22,14 @@ Color::Color(GLbyte _r, GLbyte _b, GLbyte _g, GLbyte _a)
 	a = _a;
 }
 
+Color::Color(int _r, int _g, int _b, int _a)
+{
+	r = (GLbyte)_r;
+	g = (GLbyte)_g;
+	b = (GLbyte)_b;
+	a = (GLbyte)_a;
+}
+
 
 Color::~Color()
 {

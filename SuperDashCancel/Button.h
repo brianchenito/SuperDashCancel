@@ -5,12 +5,10 @@
 
 class Button : public Drawable
 { public:
-	//Coordinates
-	Vec2 pos;
-	Vec2 scale;
+
 	
 	//Text attributes
-	string text;
+	std::string text;
 	Color color;
 	float size;
 
@@ -30,7 +28,7 @@ class Button : public Drawable
 
 	void AttachCallback(void(*callback_func)());
 	void AttachNeighbors(const Button* above = 0, const Button* below = 0, const Button* left = 0, const Button* right = 0);
-	void SetTextAttr(string _text, Color _color, float _size);
+	void SetTextAttr(std::string _text, Color _color, float _size);
 	void Draw();
 
 	Button();

@@ -8,7 +8,8 @@
 #include <vector>
 #include "TitleScene.h"
 #include "InputManager.h"
-#include <algorithm>    // std::max
+#include <algorithm>
+
 
 class App
 {
@@ -32,7 +33,14 @@ private:
 	FT_Face face;
 	FT_Error ft_err;
 	const char face_path[39] = "../SuperDashCancel/fonts/CODE_Bold.otf";
+	FT_GlyphSlot g;
+	GLuint fontTex;// index to font texture
+
+
+
 	
+
+
 public:
 	InputManager* inputmanager;
 	GLFWwindow* window;
@@ -45,5 +53,6 @@ public:
 	void GLFWInitialize();
 	void GLUTInitialize();
 	void FreeTypeInitialize();
+	void render_text(const char *text, float x, float y, float sx, float sy);
 };
 

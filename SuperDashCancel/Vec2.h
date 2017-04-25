@@ -1,9 +1,8 @@
 #pragma once
 #include <math.h>
 
-class Vec2
+struct Vec2
 {
-public:
 	float x, y;
 
 	Vec2();

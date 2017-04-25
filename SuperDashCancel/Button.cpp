@@ -29,7 +29,7 @@ void Button::AttachNeighbors(const Button* above, const Button* below, const But
 	Right = right;
 }
 
-void Button::SetTextAttr(string _text, Color _color, float _size) {
+void Button::SetTextAttr(std::string _text, Color _color, float _size) {
 	text = _text;
 	color = _color;
 	size = _size;

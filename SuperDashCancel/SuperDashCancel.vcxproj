@@ -136,6 +136,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Drawable.cpp" />
+    <ClCompile Include="DrawableTexRect.cpp" />
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="InputKeyboard.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Drawable.h" />
+    <ClInclude Include="DrawableTexRect.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputDevice.h" />
     <ClInclude Include="InputKeyboard.h" />

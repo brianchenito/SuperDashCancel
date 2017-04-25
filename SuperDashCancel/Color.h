@@ -1,13 +1,13 @@
 #pragma once
 #include <GLFW/glfw3.h>
-class Color
+struct Color
 {
-public:
-	GLbyte r, b, g, a;
+	GLbyte r, g, b, a;
 
 	Color();
 	Color(const Color& copy);
-	Color(GLbyte _r, GLbyte _b, GLbyte _g, GLbyte _a);
+	Color(GLbyte _r, GLbyte _g, GLbyte _b, GLbyte _a);
+	Color(int _r, int _g, int _b, int _a);
 	~Color();
 };
 
