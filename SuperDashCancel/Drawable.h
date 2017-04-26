@@ -20,6 +20,7 @@ public:
 	void setScale(float x, float y);
 	void setScale(Vec2 Scale);
 	void setColor(float r, float g, float b, float a);
+	void setColor(const Color& c);
 	Drawable();
 	~Drawable();
 	virtual void Draw()=0;

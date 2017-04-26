@@ -32,6 +32,11 @@ void Drawable::setColor(float r, float g, float b, float a)
 	col.a = a;
 }
 
+void Drawable::setColor(const Color & c)
+{
+	col = c;
+}
+
 
 Drawable::Drawable()
 {

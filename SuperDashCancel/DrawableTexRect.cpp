@@ -12,7 +12,7 @@ DrawableTexRect::~DrawableTexRect()
 	scale.y = 5;
 }
 
-void DrawableTexRect::loadTexture(const char * filename)
+void DrawableTexRect::loadTexture(const char * filename, TEXLOADCONFIG t)
 {
 	//glClearColor(0.0, 0.0, 0.0, 0.0);
 	glShadeModel(GL_FLAT);
@@ -22,8 +22,9 @@ void DrawableTexRect::loadTexture(const char * filename)
 	int w;
 	int h;
 	int comp;
-	unsigned char* image = stbi_load(filename, &w, &h, &comp, STBI_rgb);
-
+	unsigned char* image;
+	if(t)image= stbi_load(filename, &w, &h, &comp, STBI_rgb_alpha);
+	else image = stbi_load(filename, &w, &h, &comp, STBI_rgb);
 	if (image == nullptr)
 		throw "Failed to load texture";
 
@@ -46,10 +47,11 @@ void DrawableTexRect::loadTexture(const char * filename)
 
 void DrawableTexRect::Draw()
 {
-	glColor4f(col.getR(),col.getG(),col.getB(),col.getA());
+	glColor4f(col.r,col.g,col.b,col.a);
 	glBindTexture(GL_TEXTURE_2D, TexID);
 	glEnable(GL_TEXTURE_2D);
-	//glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_BLEND); glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glBegin(GL_QUADS);
 

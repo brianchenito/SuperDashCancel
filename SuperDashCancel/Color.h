@@ -7,10 +7,7 @@ struct Color
 	Color();
 	Color(const Color& copy);
 	Color(float _r, float _g, float _b, float _a);
-	const float& getR() { return r; }
-	const float& getG() { return g; }
-	const float& getB() { return b; }
-	const float& getA() { return a; }
+	Color operator*(const float& f);
 	~Color();
 };
 

@@ -60,10 +60,10 @@ void App::GLFWInitialize()
 	std::cout << "GLFW initialized\n";
 }
 
-void App::GLUTInitialize()
+void App::GLUTInitialize() 
 {
 	GLenum err = glewInit();
-	if (glewInit())std::runtime_error("glew broke");
+	if (err)std::runtime_error("glew broke");
 
 	std::cout << "GLEW initialized\n";
 
@@ -77,8 +77,8 @@ void App::FreeTypeInitialize()
 	ft_err = FT_New_Face(library, face_path, 0, &face);
 	if (ft_err) throw std::runtime_error("FreeType failed to load font at specified location");
 
-	FT_Set_Pixel_Sizes(face, 0, 48);
-
+	ft_err= FT_Set_Pixel_Sizes(face, 0, 48);
+	if (ft_err) std::runtime_error("freetype Scaleset failure ");
 	//load glyph images
 	for (char i = 32; i < 127; i++) 
 	{

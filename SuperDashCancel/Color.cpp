@@ -22,6 +22,11 @@ Color::Color(float _r, float _b, float _g, float _a)
 	a = _a;
 }
 
+Color Color::operator*(const float & f)
+{
+	return Color(r*f,g*f,b*f,a);
+}
+
 
 
 

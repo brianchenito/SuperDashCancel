@@ -1,5 +1,6 @@
 #pragma once
 #include "Drawable.h"
+enum TEXLOADCONFIG {NOALPHA,ALPHA};
 class DrawableTexRect : public Drawable
 {
 public:
@@ -7,7 +8,7 @@ public:
 
 	DrawableTexRect();
 	~DrawableTexRect();
-	void loadTexture(const char* filename);
+	void loadTexture(const char* filename, TEXLOADCONFIG t);
 	void Draw();
 
 };
