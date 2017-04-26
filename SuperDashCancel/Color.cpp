@@ -14,7 +14,7 @@ Color::Color(const Color & copy)
 	a = copy.a;
 }
 
-Color::Color(GLbyte _r, GLbyte _b, GLbyte _g, GLbyte _a)
+Color::Color(float _r, float _b, float _g, float _a)
 {
 	r = _r;
 	g = _g;
@@ -22,13 +22,8 @@ Color::Color(GLbyte _r, GLbyte _b, GLbyte _g, GLbyte _a)
 	a = _a;
 }
 
-Color::Color(int _r, int _g, int _b, int _a)
-{
-	r = (GLbyte)_r;
-	g = (GLbyte)_g;
-	b = (GLbyte)_b;
-	a = (GLbyte)_a;
-}
+
+
 
 
 Color::~Color()

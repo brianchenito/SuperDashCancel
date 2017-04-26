@@ -24,6 +24,14 @@ void Drawable::setScale(Vec2 Scale)
 	this->scale = Scale;
 }
 
+void Drawable::setColor(float r, float g, float b, float a)
+{
+	col.r = r;
+	col.g = g;
+	col.b = b;
+	col.a = a;
+}
+
 
 Drawable::Drawable()
 {

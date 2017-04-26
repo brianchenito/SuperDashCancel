@@ -46,9 +46,10 @@ void DrawableTexRect::loadTexture(const char * filename)
 
 void DrawableTexRect::Draw()
 {
-	glColor4f(1,1,1,1);
+	glColor4f(col.getR(),col.getG(),col.getB(),col.getA());
 	glBindTexture(GL_TEXTURE_2D, TexID);
 	glEnable(GL_TEXTURE_2D);
+	//glEnable(GL_COLOR_MATERIAL);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glBegin(GL_QUADS);
 

@@ -3,7 +3,7 @@
 #include "DrawableTexRect.h"
 class TitleScene :public Scene
 {
-	DrawableTexRect t;
+	DrawableTexRect bg;
 public:
 	TitleScene(InputManager* m);
 	~TitleScene();

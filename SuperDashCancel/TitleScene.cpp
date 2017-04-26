@@ -14,9 +14,10 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init() 
 {
-	t.setPos(Vec2(-1, -1));
-	t.setScale(2, 2);
-	t.loadTexture("../SuperDashCancel/textures/texture2.png");
+	bg.setPos(Vec2(-1, -1));
+	bg.setScale(2, 2);
+	bg.setColor(1, 0.95f, 0.9f, 1);
+	bg.loadTexture("../SuperDashCancel/textures/texture2.png");
 }
 
 void TitleScene::Terminate()
@@ -25,7 +26,7 @@ void TitleScene::Terminate()
 
 void TitleScene::Draw()
 {
-	t.Draw();
+	bg.Draw();
 }
 
 void TitleScene::OnUpdate()
