@@ -1,14 +1,20 @@
 #pragma once
+#ifndef SDC_APP_H
+#define SDC_APP_H
+
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <ft2build.h>
-#include FT_FREETYPE_H
 #define TIMESTEP 0.016666666666666667 //60 fps
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include "FontEngine.h"
 #include "TitleScene.h"
 #include "InputManager.h"
-#include <algorithm>
+
+
+
 
 
 class App
@@ -29,30 +35,18 @@ private:
 	Scene* MainMenu;
 	Scene* GamePlay;
 	
-	FT_Library library;
-	FT_Face face;
-	FT_Error ft_err;
-	const char face_path[39] = "../SuperDashCancel/fonts/CODE_Bold.otf";
-	FT_GlyphSlot g;
-	GLuint fontTex;// index to font texture
-
-
-
-	
-
-
 public:
 	InputManager* inputmanager;
 	GLFWwindow* window;
 	Scene* ActiveScene;
+	FontEngine fontengine;
 	App();
 	~App();
 	void SwitchScene(Scene* s); //kill current scene, fire up new one
 	/*Step fires as fast as your computer will allow, and is used for rendering. main loop.*/
 	void Step();
 	void GLFWInitialize();
-	void GLUTInitialize();
-	void FreeTypeInitialize();
-	void render_text(const char *text, float x, float y, float sx, float sy);
+	void GLEWInitialize();
 };
 
+#endif // !SDC_APP_H

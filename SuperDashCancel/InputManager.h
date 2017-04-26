@@ -1,4 +1,9 @@
 #pragma once
+#ifndef SDC_INPUT_MANAGER_H
+#define SDC_INPUT_MANAGER_H
+
+
+
 #include <vector>
 #include <algorithm>
 #include <GLFW/glfw3.h>
@@ -27,3 +32,4 @@ public:
 	bool Held(Input b, bool isPlayer1);
 };
 
+#endif // !SDC_INPUT_MANAGER_H

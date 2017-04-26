@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SDC_VEC2_H
+#define  SDC_VEC2_H
+
 #include <math.h>
 
 struct Vec2
@@ -39,3 +42,4 @@ struct Vec2
 	}
 };
 
+#endif // !SDC_VEC2_H

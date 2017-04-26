@@ -1,4 +1,8 @@
 #pragma once
+#ifndef SDC_INPUT_KEYBOARD_H
+#define SDC_INPUT_KEYBOARD_H
+
+
 #include "InputDevice.h"
 class InputKeyboard :public InputDevice
 {
@@ -16,3 +20,4 @@ public:
 	  
 };
 
+#endif // !SDC_INPUT_KEYBOARD_H

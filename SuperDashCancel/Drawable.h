@@ -1,10 +1,15 @@
 #pragma once
+#ifndef SDC_DRAWABLE_H
+#define SDC_DRAWABLE_H
+
+
 #include <stb_image.h>
 #include <GLFW/glfw3.h>
 #include "Vec2.h"
 #include "Vec3.h"
 #include "Color.h"
 #include <iostream>
+
 
 
 class Drawable
@@ -25,4 +30,4 @@ public:
 	~Drawable();
 	virtual void Draw()=0;
 };
-
+#endif // !SDC_DRAWABLE_H

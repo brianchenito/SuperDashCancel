@@ -79,7 +79,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\SuperDashCancel\glfw\include;..\SuperDashCancel\freetype-2.7.1\include;..\SuperDashCancel\stb-master;..\SuperDashCancel\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SuperDashCancel\glfw\include;..\SuperDashCancel\freetype-2.7.1\include;..\SuperDashCancel\stb-master;..\SuperDashCancel\glew-2.0.0\include;..\SuperDashCancel;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>..\SuperDashCancel\glfw\lib-vc2015;..\SuperDashCancel\freetype-2.7.1\objs\vc2010\Win32;..\SuperDashCancel\glew-2.0.0\lib\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -105,7 +105,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\SuperDashCancel\glfw\include;..\SuperDashCancel\freetype-2.7.1\include;..\SuperDashCancel\stb-master;..\SuperDashCancel\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SuperDashCancel\glfw\include;..\SuperDashCancel\freetype-2.7.1\include;..\SuperDashCancel\stb-master;..\SuperDashCancel\glew-2.0.0\include;..\SuperDashCancel;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -137,6 +137,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="DrawableTexRect.cpp" />
+    <ClCompile Include="FontEngine.cpp" />
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="InputKeyboard.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -151,11 +152,36 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="DrawableTexRect.h" />
+    <ClInclude Include="FontEngine.h" />
+    <ClInclude Include="glm\common.hpp" />
+    <ClInclude Include="glm\exponential.hpp" />
+    <ClInclude Include="glm\ext.hpp" />
+    <ClInclude Include="glm\fwd.hpp" />
+    <ClInclude Include="glm\geometric.hpp" />
+    <ClInclude Include="glm\glm.hpp" />
+    <ClInclude Include="glm\integer.hpp" />
+    <ClInclude Include="glm\mat2x2.hpp" />
+    <ClInclude Include="glm\mat2x3.hpp" />
+    <ClInclude Include="glm\mat2x4.hpp" />
+    <ClInclude Include="glm\mat3x2.hpp" />
+    <ClInclude Include="glm\mat3x3.hpp" />
+    <ClInclude Include="glm\mat3x4.hpp" />
+    <ClInclude Include="glm\mat4x2.hpp" />
+    <ClInclude Include="glm\mat4x3.hpp" />
+    <ClInclude Include="glm\mat4x4.hpp" />
+    <ClInclude Include="glm\matrix.hpp" />
+    <ClInclude Include="glm\packing.hpp" />
+    <ClInclude Include="glm\trigonometric.hpp" />
+    <ClInclude Include="glm\vec2.hpp" />
+    <ClInclude Include="glm\vec3.hpp" />
+    <ClInclude Include="glm\vec4.hpp" />
+    <ClInclude Include="glm\vector_relational.hpp" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputDevice.h" />
     <ClInclude Include="InputKeyboard.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="shader.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />

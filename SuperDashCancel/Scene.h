@@ -1,7 +1,12 @@
 #pragma once
+#ifndef SDC_SCENE_H
+#define SDC_SCENE_H
+
+
 #include <iostream>
 #include <GLFW/glfw3.h>
 #include "InputManager.h"
+//#include "FontEngine.h" // figure out how to uncomment this line
 class Scene
 {public:
 	InputManager* inputmanager;
@@ -17,3 +22,4 @@ class Scene
 
 };
 
+#endif // !SDC_SCENE_H

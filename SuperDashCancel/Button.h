@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SDC_BUTTON_H
+#define SDC_BUTTON_H
+
 
 #include <string>
 #include "Drawable.h"
@@ -36,3 +39,4 @@ class Button : public Drawable
 	~Button();
 };
 
+#endif // !SDC_BUTTON_H

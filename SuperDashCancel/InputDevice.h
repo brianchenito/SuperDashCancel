@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SDC_INPUT_DEVICE_H
+#define SDC_INPUT_DEVICE_H
+
 #include "Input.h"
 #include <GLFW/glfw3.h>
 #include <string>
@@ -17,3 +20,4 @@ public:
 
 };
 
+#endif // !SDC_INPUT_DEVICE_H

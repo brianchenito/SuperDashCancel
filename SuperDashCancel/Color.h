@@ -1,4 +1,8 @@
 #pragma once
+#ifndef SDC_COLOR_H
+#define	SDC_COLOR_H
+
+
 #include <GLFW/glfw3.h>
 struct Color
 {
@@ -11,3 +15,4 @@ struct Color
 	~Color();
 };
 
+#endif // !SDC_COLOR_H

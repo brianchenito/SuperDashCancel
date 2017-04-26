@@ -47,11 +47,13 @@ void DrawableTexRect::loadTexture(const char * filename, TEXLOADCONFIG t)
 
 void DrawableTexRect::Draw()
 {
+
 	glColor4f(col.r,col.g,col.b,col.a);
 	glBindTexture(GL_TEXTURE_2D, TexID);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_COLOR_MATERIAL);
-	glEnable(GL_BLEND); glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND); 
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glBegin(GL_QUADS);
 

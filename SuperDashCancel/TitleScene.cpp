@@ -20,11 +20,6 @@ void TitleScene::Init()
 	bgpower = 0;
 	bg.setColor(bgcolor*bgpower);
 	bg.loadTexture("../SuperDashCancel/textures/texture2.png", NOALPHA);
-	test.setColor(1, 0.8f, 1, 1);
-	test.setPos(Vec2(-0.5, -0.5));
-	test.setScale(Vec2(0.5f, 0.25f));
-	test.loadTexture("../SuperDashCancel/textures/texture3.png",ALPHA);
-
 }
 
 void TitleScene::Terminate()
@@ -34,7 +29,6 @@ void TitleScene::Terminate()
 void TitleScene::Draw()
 {
 	bg.Draw();
-	test.Draw();
 }
 
 void TitleScene::OnUpdate()

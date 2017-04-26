@@ -1,4 +1,8 @@
 #pragma once
+#ifndef SDC_VEC3_H
+#define SDC_VEC3_H
+
+
 #include <math.h>
 
 struct Vec3
@@ -40,3 +44,4 @@ struct Vec3
 	}
 };
 
+#endif // !SDC_VEC3_H
