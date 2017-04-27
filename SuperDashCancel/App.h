@@ -6,6 +6,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #define TIMESTEP 0.016666666666666667 //60 fps
+#define FPSCOUNTERSMOOTH 0.9
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -22,13 +23,13 @@ class App
 private:
 	// the time of the frame last drawn.
 	double LastFrameTime;
-	//the time the last fixedstep occured
-	double LastFixedTime;
+	double NextFixedTime;
+	double FPS;
 	//  consumes all currently buffered gl draws and flushes buffers.
 	void Render();
 	/*Fixedstep fires 60 times a second, and is used for simulation. runs inside Step().*/
 	void FixedStep();
-	double FPS;
+
 	Scene* TitleScreen;
 	Scene* MainMenu;
 	Scene* GamePlay;

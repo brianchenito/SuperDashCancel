@@ -4,7 +4,7 @@
 App::App()
 {
 	LastFrameTime = 0.0;
-	LastFixedTime = 0.0;
+	NextFixedTime = TIMESTEP;
 	
 	GLFWInitialize();
 	GLEWInitialize();
@@ -32,7 +32,7 @@ void App::Render()
 	if (ActiveScene)ActiveScene->Draw();
 
 	// print fps
-	fontengine.RenderText("FPS: "+std::to_string(FPS), 1200.0f, 25.0f, 0.15f, glm::vec3(0.3f,0.3f,0.3f));
+	fontengine.RenderText("FPS: "+std::to_string((int)round(FPS)), 1200.0f, 25.0f, 0.15f, glm::vec3(0.3f,0.3f,0.3f));
 
 	glFlush();
 	glfwSwapBuffers(window);
@@ -41,16 +41,16 @@ void App::Render()
 
 void App::Step()
 {
-
-	/*perform timestamp stuff*/
-	LastFrameTime = glfwGetTime();
+	Render();
 	/*flush event buffer*/
 	glfwPollEvents();
 
 	if (ActiveScene)ActiveScene->OnUpdate();
+	
+
 	/* if its time, iterate sim*/
-	if (LastFixedTime+TIMESTEP<=LastFrameTime) FixedStep();
-	Render();	
+	if (glfwGetTime() >=NextFixedTime) FixedStep();
+
 }
 
 void App::GLFWInitialize()
@@ -83,11 +83,12 @@ void App::GLEWInitialize()
 
 void App::FixedStep()
 {
-	//std::cout << "ticktest\n";
-	FPS = 1/(glfwGetTime() - LastFixedTime);
-	LastFixedTime+=TIMESTEP;
+
 	inputmanager.FixedStep();
 	if (ActiveScene)ActiveScene->OnFixedUpdate();
+	FPS = (FPSCOUNTERSMOOTH*FPS)+(1-FPSCOUNTERSMOOTH)*(1/(glfwGetTime() - LastFrameTime));
+	NextFixedTime += TIMESTEP;
+	LastFrameTime= glfwGetTime();
 }
 
 
