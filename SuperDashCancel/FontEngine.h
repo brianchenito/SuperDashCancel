@@ -2,13 +2,15 @@
 #ifndef SDC_FONT_ENGINE_H
 #define SDC_FONT_ENGINE_H
 
+#include "Shader.h"
 
-#include <ft2build.h>
 #include "glm/ext.hpp"
 #include "glm/glm.hpp"
+#include <ft2build.h>
 #include FT_FREETYPE_H
+
 #include <map>
-#include "Shader.h"
+
 struct Character {
 	GLuint     TextureID;  // ID handle of the glyph texture
 	glm::ivec2 Size;       // Size of glyph

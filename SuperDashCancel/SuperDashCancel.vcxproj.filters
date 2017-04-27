@@ -61,7 +61,7 @@
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="FontEngine.cpp">
-      <Filter>Drawable</Filter>
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -177,7 +177,7 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="FontEngine.h">
-      <Filter>Drawable</Filter>
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

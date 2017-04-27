@@ -1,6 +1,10 @@
 #include "InputManager.h"
 
-InputManager::InputManager(GLFWwindow * window)
+InputManager::InputManager()
+{
+
+}
+void InputManager::Init(GLFWwindow * window)
 {
 	this->window = window;
 	glfwSetJoystickCallback(joystickCB);

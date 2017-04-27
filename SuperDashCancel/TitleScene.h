@@ -11,9 +11,8 @@ class TitleScene :public Scene
 	float bgpower;
 	Color bgcolor;
 	DrawableTexRect bg;
-	DrawableTexRect test;
 public:
-	TitleScene(InputManager* m);
+	TitleScene(InputManager* m, FontEngine* e);
 	~TitleScene();
 	void Init();
 	void Terminate();

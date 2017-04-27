@@ -2,15 +2,17 @@
 #ifndef SDC_SCENE_H
 #define SDC_SCENE_H
 
+#include "FontEngine.h" // figure out how to uncomment this line
 
 #include <iostream>
-#include <GLFW/glfw3.h>
 #include "InputManager.h"
-//#include "FontEngine.h" // figure out how to uncomment this line
+#include <GLFW/glfw3.h>
+
 class Scene
 {public:
 	InputManager* inputmanager;
-	Scene(InputManager* m);
+	FontEngine* fontengine;
+	Scene(InputManager* m, FontEngine* e);
 	~Scene();
 
 	virtual void Init() = 0;

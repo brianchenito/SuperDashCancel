@@ -18,7 +18,7 @@ void FontEngine::init()
 	ft_err = FT_New_Face(library, face_path, 0, &face);
 	if (ft_err) throw std::runtime_error("FreeType failed to load font at specified location");
 
-	ft_err = FT_Set_Pixel_Sizes(face, 0, 48);
+	ft_err = FT_Set_Pixel_Sizes(face, 0, 64);
 	if (ft_err) std::runtime_error("freetype Scaleset failure ");
 	//load glyph images
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // Disable byte-alignment restriction

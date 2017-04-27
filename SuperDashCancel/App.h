@@ -22,21 +22,19 @@ class App
 private:
 	// the time of the frame last drawn.
 	double LastFrameTime;
-	// the time elapsed since the last frame drawn.
-	double deltaTime;
 	//the time the last fixedstep occured
 	double LastFixedTime;
 	//  consumes all currently buffered gl draws and flushes buffers.
 	void Render();
 	/*Fixedstep fires 60 times a second, and is used for simulation. runs inside Step().*/
 	void FixedStep();
-
+	double FPS;
 	Scene* TitleScreen;
 	Scene* MainMenu;
 	Scene* GamePlay;
 	
 public:
-	InputManager* inputmanager;
+	InputManager inputmanager;
 	GLFWwindow* window;
 	Scene* ActiveScene;
 	FontEngine fontengine;

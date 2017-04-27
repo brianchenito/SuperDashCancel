@@ -13,8 +13,8 @@ App::App()
 	std::cout << "All OpenGL Libraries Initialized\n\n";
 
 	/* Scene Init */
-	inputmanager = new InputManager(window);
-	TitleScreen = new TitleScene(inputmanager);
+	inputmanager.Init(window);
+	TitleScreen = new TitleScene(&inputmanager, &fontengine);
 	ActiveScene = TitleScreen;
 	ActiveScene->Init();
 
@@ -32,7 +32,7 @@ void App::Render()
 	if (ActiveScene)ActiveScene->Draw();
 
 	// print fps
-	fontengine.RenderText("FPS: "+std::to_string((int)round(1/deltaTime)), 1200.0f, 25.0f, 0.3f, glm::vec3(0.3f,0.3f,0.3f));
+	fontengine.RenderText("FPS: "+std::to_string(FPS), 1200.0f, 25.0f, 0.15f, glm::vec3(0.3f,0.3f,0.3f));
 
 	glFlush();
 	glfwSwapBuffers(window);
@@ -41,14 +41,15 @@ void App::Render()
 
 void App::Step()
 {
+
+	/*perform timestamp stuff*/
+	LastFrameTime = glfwGetTime();
 	/*flush event buffer*/
 	glfwPollEvents();
-	/*perform timestamp stuff*/
-	deltaTime = glfwGetTime() - LastFrameTime;
-	LastFrameTime = glfwGetTime();
+
 	if (ActiveScene)ActiveScene->OnUpdate();
 	/* if its time, iterate sim*/
-	if (LastFixedTime+TIMESTEP<LastFrameTime) FixedStep();
+	if (LastFixedTime+TIMESTEP<=LastFrameTime) FixedStep();
 	Render();	
 }
 
@@ -83,8 +84,9 @@ void App::GLEWInitialize()
 void App::FixedStep()
 {
 	//std::cout << "ticktest\n";
+	FPS = 1/(glfwGetTime() - LastFixedTime);
 	LastFixedTime+=TIMESTEP;
-	inputmanager->FixedStep();
+	inputmanager.FixedStep();
 	if (ActiveScene)ActiveScene->OnFixedUpdate();
 }
 
@@ -95,7 +97,6 @@ App::~App()
 	delete MainMenu;
 	delete GamePlay;
 	//delet this
-	delete inputmanager;
 	glfwTerminate();
 }
 

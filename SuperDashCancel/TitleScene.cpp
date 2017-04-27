@@ -2,7 +2,7 @@
 
 
 
-TitleScene::TitleScene(InputManager* m):Scene(m)
+TitleScene::TitleScene(InputManager* m, FontEngine* e):Scene(m,e)
 {
 
 }
@@ -29,6 +29,8 @@ void TitleScene::Terminate()
 void TitleScene::Draw()
 {
 	bg.Draw();
+	fontengine->RenderText("SUPERDASHCANCEL", 380.0f, 360.0f, 1.0f, glm::vec3(0.3f, 0.3f, 0.3f));
+
 }
 
 void TitleScene::OnUpdate()

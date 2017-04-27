@@ -20,7 +20,8 @@ private:
 	GLFWwindow* window;
 public:
 
-	InputManager(GLFWwindow* window);
+	InputManager();
+	void Init(GLFWwindow* window);
 	~InputManager();
 	void FixedStep();
 	static void joystickCB(int joy, int event);
