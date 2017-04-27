@@ -16,7 +16,7 @@ class Drawable
 {
 protected:
 	//Coordinates
-	Vec2 pos;
+	Vec2 pos;//position and scale are in screenspace :[-1,1]
 	Vec2 scale;
 	Color col;
 public:
@@ -26,8 +26,12 @@ public:
 	void setScale(Vec2 Scale);
 	void setColor(float r, float g, float b, float a);
 	void setColor(const Color& c);
+	static Vec2 PixelSpaceToScreenSpace(Vec2 v);
+	static Vec2 ScreenSpaceToPixelSpace(Vec2 v);
 	Drawable();
+	Drawable(Vec2 Pos, Vec2 Scale, Color col);
 	~Drawable();
 	virtual void Draw()=0;
+
 };
 #endif // !SDC_DRAWABLE_H

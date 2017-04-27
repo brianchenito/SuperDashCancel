@@ -63,6 +63,9 @@
     <ClCompile Include="FontEngine.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="DrawableText.cpp">
+      <Filter>Drawable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h">
@@ -178,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="FontEngine.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableText.h">
+      <Filter>Drawable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

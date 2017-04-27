@@ -20,6 +20,10 @@ void TitleScene::Init()
 	bgpower = 0;
 	bg.setColor(bgcolor*bgpower);
 	bg.loadTexture("../SuperDashCancel/textures/texture2.png", NOALPHA);
+
+	title = DrawableText(fontengine, "SUPERDASHCANCEL", Vec2(-0.57f, 0.3f), 1.0f, Color(0.3f, 0.3f, 0.3f, 1.0f));
+
+	std::cout << "Default Controls:\n Player 1: WASD, V,B\n Player 2: Arrow Keys, Numpad 1, 2\n\nPlug in Controllers to override\n";
 }
 
 void TitleScene::Terminate()
@@ -29,8 +33,7 @@ void TitleScene::Terminate()
 void TitleScene::Draw()
 {
 	bg.Draw();
-	fontengine->RenderText("SUPERDASHCANCEL", 380.0f, 360.0f, 1.0f, glm::vec3(0.3f, 0.3f, 0.3f));
-
+	title.Draw();
 }
 
 void TitleScene::OnUpdate()

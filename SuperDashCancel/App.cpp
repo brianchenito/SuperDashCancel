@@ -41,13 +41,9 @@ void App::Render()
 
 void App::Step()
 {
-	Render();
 	/*flush event buffer*/
 	glfwPollEvents();
-
 	if (ActiveScene)ActiveScene->OnUpdate();
-	
-
 	/* if its time, iterate sim*/
 	if (glfwGetTime() >=NextFixedTime) FixedStep();
 
@@ -66,6 +62,8 @@ void App::GLFWInitialize()
 	}
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
+
+	glfwSetWindowSizeLimits(window, 1280, 720, 1280, 720);
 	std::cout << "GLFW initialized\n";
 }
 
@@ -83,7 +81,7 @@ void App::GLEWInitialize()
 
 void App::FixedStep()
 {
-
+	Render();
 	inputmanager.FixedStep();
 	if (ActiveScene)ActiveScene->OnFixedUpdate();
 	FPS = (FPSCOUNTERSMOOTH*FPS)+(1-FPSCOUNTERSMOOTH)*(1/(glfwGetTime() - LastFrameTime));

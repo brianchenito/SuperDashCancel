@@ -5,12 +5,19 @@
 
 #include "Scene.h"
 #include "DrawableTexRect.h"
+#include "Button.h"
+#include "DrawableText.h"
 #include <math.h>
 class TitleScene :public Scene
 {
+private:
+	// stuff for animating the background
 	float bgpower;
 	Color bgcolor;
 	DrawableTexRect bg;
+	DrawableText title;
+
+
 public:
 	TitleScene(InputManager* m, FontEngine* e);
 	~TitleScene();

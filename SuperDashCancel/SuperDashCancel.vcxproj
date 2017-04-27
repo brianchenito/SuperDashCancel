@@ -137,6 +137,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="DrawableTexRect.cpp" />
+    <ClCompile Include="DrawableText.cpp" />
     <ClCompile Include="FontEngine.cpp" />
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="InputKeyboard.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="DrawableTexRect.h" />
+    <ClInclude Include="DrawableText.h" />
     <ClInclude Include="FontEngine.h" />
     <ClInclude Include="glm\common.hpp" />
     <ClInclude Include="glm\exponential.hpp" />

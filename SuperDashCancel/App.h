@@ -6,7 +6,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #define TIMESTEP 0.016666666666666667 //60 fps
-#define FPSCOUNTERSMOOTH 0.9
+#define FPSCOUNTERSMOOTH 0.95
 #include <iostream>
 #include <vector>
 #include <algorithm>
