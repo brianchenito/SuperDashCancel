@@ -14,14 +14,11 @@ App::App()
 
 	/* Scene Init */
 	inputmanager.Init(window);
-	TitleScreen = new TitleScene(&inputmanager, &fontengine);
-	ActiveScene = TitleScreen;
-	ActiveScene->Init();
 
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
+	ActiveScene = 0;
 }
 
 void App::Render()
@@ -92,16 +89,13 @@ void App::FixedStep()
 
 App::~App()
 {
-	delete TitleScreen;
-	delete MainMenu;
-	delete GamePlay;
 	//delet this
 	glfwTerminate();
 }
 
-void App::SwitchScene(Scene * s)
+void App::SwitchScene(std::string scene)
 {
-	ActiveScene->Terminate();
-	ActiveScene = s;
+	if(ActiveScene)ActiveScene->Terminate();
+	ActiveScene = Scenes[scene];
 	ActiveScene->Init();
 }

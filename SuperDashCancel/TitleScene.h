@@ -3,12 +3,12 @@
 #define SDC_TITLE_SCENE_H
 
 
-#include "Scene.h"
+#include "App.h"
 #include "DrawableTexRect.h"
 #include "Button.h"
 #include "DrawableText.h"
 #include <math.h>
-class TitleScene :public Scene
+class TitleScene :public App::Scene
 {
 private:
 	// stuff for animating the background
@@ -19,7 +19,7 @@ private:
 
 
 public:
-	TitleScene(InputManager* m, FontEngine* e);
+	TitleScene(App* a,std::string label);
 	~TitleScene();
 	void Init();
 	void Terminate();

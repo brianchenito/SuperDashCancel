@@ -11,10 +11,7 @@
 #include <vector>
 #include <algorithm>
 #include "FontEngine.h"
-#include "TitleScene.h"
 #include "InputManager.h"
-
-
 
 
 
@@ -29,19 +26,36 @@ private:
 	void Render();
 	/*Fixedstep fires 60 times a second, and is used for simulation. runs inside Step().*/
 	void FixedStep();
-
-	Scene* TitleScreen;
-	Scene* MainMenu;
-	Scene* GamePlay;
 	
 public:
+	/*Scene is embedded to avoid issues with circular dependencies and having to forward declare*/
+	class Scene
+	{
+	public:
+		App* app;
+		Scene(App* a, std::string Title)
+		{
+			app = a; 
+			app->Scenes.insert(std::pair<std::string, Scene*>(Title, this));
+		}
+		~Scene() {}
+		virtual void Init() = 0;
+		virtual void Terminate() = 0;
+		virtual void Draw() = 0;
+		virtual void OnUpdate() = 0;
+		virtual void OnFixedUpdate() = 0;
+
+	};
+
+	std::map<std::string, Scene*> Scenes;// all scenes that belong to this app
+
 	InputManager inputmanager;
 	GLFWwindow* window;
 	Scene* ActiveScene;
 	FontEngine fontengine;
 	App();
 	~App();
-	void SwitchScene(Scene* s); //kill current scene, fire up new one
+	void SwitchScene(std::string Scene); //kill current scene, fire up new one
 	/*Step fires as fast as your computer will allow, and is used for rendering. main loop.*/
 	void Step();
 	void GLFWInitialize();

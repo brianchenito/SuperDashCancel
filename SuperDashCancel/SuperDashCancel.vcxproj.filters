@@ -7,9 +7,6 @@
     <Filter Include="App">
       <UniqueIdentifier>{ddb0041d-7bd0-453c-b9bf-f0229508dfba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{4a09354b-4683-44a2-bcac-dd58ceae65d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{6617046c-71c0-4771-aae9-d5ecb05814ea}</UniqueIdentifier>
     </Filter>
@@ -18,6 +15,9 @@
     </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{e416aacb-dfb8-4fc9-9a97-a5a47cec015c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Scenes">
+      <UniqueIdentifier>{4a09354b-4683-44a2-bcac-dd58ceae65d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,11 +36,8 @@
     <ClCompile Include="AppMain.cpp">
       <Filter>App</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="TitleScene.cpp">
-      <Filter>Scene</Filter>
+      <Filter>App\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="InputDevice.cpp">
       <Filter>Input</Filter>
@@ -80,11 +77,8 @@
     <ClInclude Include="App.h">
       <Filter>App</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="TitleScene.h">
-      <Filter>Scene</Filter>
+      <Filter>App\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Input</Filter>

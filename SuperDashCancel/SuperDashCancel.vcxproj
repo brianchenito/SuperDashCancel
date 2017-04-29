@@ -142,7 +142,6 @@
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="InputKeyboard.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="Vec3.cpp" />
@@ -182,7 +181,6 @@
     <ClInclude Include="InputDevice.h" />
     <ClInclude Include="InputKeyboard.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Scene.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Vec2.h" />
