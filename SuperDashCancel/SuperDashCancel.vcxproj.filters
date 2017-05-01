@@ -19,11 +19,11 @@
     <Filter Include="App\Scenes">
       <UniqueIdentifier>{4a09354b-4683-44a2-bcac-dd58ceae65d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Drawable\Buttons">
+      <UniqueIdentifier>{8979bde1-672e-4c67-b2f0-b29445d6ab35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp">
-      <Filter>Drawable</Filter>
-    </ClCompile>
     <ClCompile Include="DrawableTexRect.cpp">
       <Filter>Drawable</Filter>
     </ClCompile>
@@ -63,11 +63,20 @@
     <ClCompile Include="DrawableText.cpp">
       <Filter>Drawable</Filter>
     </ClCompile>
+    <ClCompile Include="MainMenuScene.cpp">
+      <Filter>App\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MPReadyUpScene.cpp">
+      <Filter>App\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Drawable\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonLaunchSP.cpp">
+      <Filter>Drawable\Buttons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.h">
-      <Filter>Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="Drawable.h">
       <Filter>Drawable</Filter>
     </ClInclude>
@@ -178,6 +187,18 @@
     </ClInclude>
     <ClInclude Include="DrawableText.h">
       <Filter>Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>App\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="MPReadyUpScene.h">
+      <Filter>App\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Drawable\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonLaunchSP.h">
+      <Filter>Drawable\Buttons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

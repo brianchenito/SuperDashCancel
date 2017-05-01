@@ -12,6 +12,13 @@ DrawableTexRect::~DrawableTexRect()
 	scale.y = 5;
 }
 
+DrawableTexRect::DrawableTexRect(Vec2 Pos, Vec2 Scale, Color Color)
+{
+	this->pos=Pos;
+	this->scale=Scale;
+	this->col = Color;
+}
+
 void DrawableTexRect::loadTexture(const char * filename, TEXLOADCONFIG t)
 {
 	//glClearColor(0.0, 0.0, 0.0, 0.0);

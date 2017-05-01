@@ -12,12 +12,13 @@ class TitleScene :public App::Scene
 {
 private:
 	// stuff for animating the background
-	float bgpower;
 	Color bgcolor;
 	DrawableTexRect bg;
 	DrawableText title;
-
-
+	DrawableText Continue;
+	Vec2 titleswoopin;
+	Vec2 contswoopin;
+	int contvis;
 public:
 	TitleScene(App* a,std::string label);
 	~TitleScene();

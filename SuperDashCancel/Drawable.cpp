@@ -40,7 +40,7 @@ void Drawable::setColor(const Color & c)
 Vec2 Drawable::PixelSpaceToScreenSpace(Vec2 v)
 {
 	v.x /= 640;
-	v.y / 360;
+	v.y /= 360;
 	v.x -= 1;
 	v.y -= 1;
 	return v;

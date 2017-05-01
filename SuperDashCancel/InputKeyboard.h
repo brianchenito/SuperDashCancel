@@ -8,9 +8,9 @@ class InputKeyboard :public InputDevice
 {
 private:
 
-	int keybinds[6];
-	bool pressed[6];
-	bool held[6];
+	int keybinds[8];
+	bool pressed[8];
+	bool held[8];
 public:
 	InputKeyboard(GLFWwindow * window,bool isPlayer1);
 	~InputKeyboard();

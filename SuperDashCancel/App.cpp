@@ -8,7 +8,8 @@ App::App()
 	
 	GLFWInitialize();
 	GLEWInitialize();
-
+	glfwWindowHint(GLFW_SAMPLES, 4);
+	glEnable(GL_MULTISAMPLE);
 	fontengine.init();
 	std::cout << "All OpenGL Libraries Initialized\n\n";
 
@@ -23,7 +24,7 @@ App::App()
 
 void App::Render()
 {
-	glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
+	glClearColor(0.5f,0.5f,0.5f,0.5f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	if (ActiveScene)ActiveScene->Draw();

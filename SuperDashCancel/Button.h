@@ -4,39 +4,29 @@
 
 
 #include <string>
-#include "Drawable.h"
+#include "DrawableText.h"
+class Button : public DrawableText
+{ 
 
-class Button : public Drawable
-{ public:
-
-	
-	//Text attributes
-	std::string text;
-	Color color;
-	float size;
+public:
 
 	//Pointers to adjacent buttons
-	const Button* Above;
-	const Button* Below;
-	const Button* Left;
-	const Button* Right;
-
-	//Background images
-	GLuint tex_id;
-	GLuint alt_tex_id;
-	bool selected;
-
-	//OnPress delegate
-	void(*OnPress)() = 0;
-
-	void AttachCallback(void(*callback_func)());
-	void AttachNeighbors(const Button* above = 0, const Button* below = 0, const Button* left = 0, const Button* right = 0);
-	void SetTextAttr(std::string _text, Color _color, float _size);
-	void Draw();
+	 Button* Above;
+	 Button* Below;
+	 Button* Left;
+	 Button* Right;
+	
+	Color altCol;
+	virtual void Activate()=0;// callbacks dont work for our use case, needs to be nonstatic
+	void AttachNeighbors( Button* above = 0,  Button* below = 0,  Button* left = 0,  Button* right = 0);
 
 	Button();
-	Button(Vec2 _pos, Vec2 _scale, GLuint _tex_id, GLuint _alt_tex_id, void(*callback_func)() = 0);
+	Button(FontEngine*f);
+	
+	Button(FontEngine*f, std::string s, Vec2  Pos, float fontscale, Color col);
+
 	~Button();
+	
 };
 
 #endif // !SDC_BUTTON_H

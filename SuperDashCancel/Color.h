@@ -12,6 +12,8 @@ struct Color
 	Color(const Color& copy);
 	Color(float _r, float _g, float _b, float _a);
 	Color operator*(const float& f);
+	Color operator/(const float& f);
+	Color operator+(const Color& c);
 	~Color();
 };
 

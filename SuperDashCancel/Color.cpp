@@ -24,9 +24,17 @@ Color::Color(float _r, float _b, float _g, float _a)
 
 Color Color::operator*(const float & f)
 {
-	return Color(r*f,g*f,b*f,a);
+	return Color(r*f,g*f,b*f,a*f);
+}
+Color Color::operator/(const float & f)
+{
+	return Color(r/f, g/f, b/f, a);
 }
 
+Color Color::operator+(const Color & c)
+{
+	return Color(r+c.r,g+c.g,b+c.b,a+c.a);
+}
 
 
 

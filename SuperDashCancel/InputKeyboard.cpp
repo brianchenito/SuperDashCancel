@@ -12,7 +12,9 @@ InputKeyboard::InputKeyboard(GLFWwindow * window, bool isPlayer1):InputDevice(wi
 		keybinds[3] = GLFW_KEY_D;
 		keybinds[4] = GLFW_KEY_V;
 		keybinds[5] = GLFW_KEY_B;
-		
+		keybinds[6] = GLFW_KEY_ENTER;
+		keybinds[7] = GLFW_KEY_ESCAPE;
+
 	}
 	else 
 	{
@@ -21,10 +23,12 @@ InputKeyboard::InputKeyboard(GLFWwindow * window, bool isPlayer1):InputDevice(wi
 		keybinds[1] = GLFW_KEY_DOWN;
 		keybinds[2] = GLFW_KEY_LEFT;
 		keybinds[3] = GLFW_KEY_RIGHT;
-		keybinds[4] = GLFW_KEY_KP_1;
-		keybinds[5] = GLFW_KEY_KP_2;
+		keybinds[4] = GLFW_KEY_PERIOD;
+		keybinds[5] = GLFW_KEY_SLASH;
+		keybinds[7] = GLFW_KEY_ESCAPE;
+
 	}
-	for (int i = 0; i < 6; i++) 
+	for (int i = 0; i < 8; i++) 
 	{ 
 		pressed[i] = false; 
 		held[i] = false;
@@ -39,7 +43,7 @@ InputKeyboard::~InputKeyboard()
 
 void InputKeyboard::FixedStep()
 {
-	for (int i = 0; i < 6; i++) 
+	for (int i = 0; i < 8; i++) 
 	{
 		if (glfwGetKey(window, keybinds[i]) == GLFW_PRESS) 
 		{

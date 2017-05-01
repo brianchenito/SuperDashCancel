@@ -134,6 +134,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AppMain.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ButtonLaunchSP.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="DrawableTexRect.cpp" />
@@ -142,6 +143,8 @@
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="InputKeyboard.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
+    <ClCompile Include="MPReadyUpScene.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="Vec3.cpp" />
@@ -149,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="ButtonLaunchSP.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="DrawableTexRect.h" />
@@ -181,6 +185,8 @@
     <ClInclude Include="InputDevice.h" />
     <ClInclude Include="InputKeyboard.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="MainMenuScene.h" />
+    <ClInclude Include="MPReadyUpScene.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Vec2.h" />
