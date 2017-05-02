@@ -8,7 +8,7 @@ void Drawable::setPos(float x, float y)
 	pos.y = y;
 }
 
-void Drawable::setPos(Vec2 pos)
+void Drawable::setPos(glm::vec2 pos)
 {
 	this->pos = pos;
 }
@@ -19,7 +19,7 @@ void Drawable::setScale(float x, float y)
 	scale.y = y;
 }
 
-void Drawable::setScale(Vec2 Scale)
+void Drawable::setScale(glm::vec2 Scale)
 {
 	this->scale = Scale;
 }
@@ -29,15 +29,14 @@ void Drawable::setColor(float r, float g, float b, float a)
 	col.r = r;
 	col.g = g;
 	col.b = b;
-	col.a = a;
 }
 
-void Drawable::setColor(const Color & c)
+void Drawable::setColor(const glm::vec3 c)
 {
 	col = c;
 }
 
-Vec2 Drawable::PixelSpaceToScreenSpace(Vec2 v)
+glm::vec2 Drawable::PixelSpaceToScreenSpace(glm::vec2 v)
 {
 	v.x /= 640;
 	v.y /= 360;
@@ -46,7 +45,7 @@ Vec2 Drawable::PixelSpaceToScreenSpace(Vec2 v)
 	return v;
 }
 
-Vec2 Drawable::ScreenSpaceToPixelSpace(Vec2 v)
+glm::vec2 Drawable::ScreenSpaceToPixelSpace(glm::vec2 v)
 {
 	v.x += 1;
 	v.y += 1;
@@ -61,7 +60,7 @@ Drawable::Drawable()
 {
 }
 
-Drawable::Drawable(Vec2 Pos, Vec2 Scale, Color col)
+Drawable::Drawable(glm::vec2 Pos, glm::vec2 Scale,glm::vec3 col)
 {
 	this->pos = Pos;
 	this->scale = Scale;

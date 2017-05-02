@@ -75,9 +75,10 @@ void FontEngine::init()
 
 void FontEngine::RenderText( std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
 {
+	//std::cout << color.r << " " << color.g << " "<<color.b << " COLORS \n";
 	// Activate corresponding render state	
 	shader->use();
-	glUniform3f(glGetUniformLocation(shader->ID, "textColor"), color.x, color.y, color.z);
+	glUniform3f(glGetUniformLocation(shader->ID, "textColor"), color.r, color.g, color.b);
 	glActiveTexture(GL_TEXTURE0);
 	glBindVertexArray(VAO);
 

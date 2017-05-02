@@ -8,16 +8,17 @@
 #include "Button.h"
 #include "DrawableText.h"
 #include <math.h>
+#include "glm/glm.hpp"
 class TitleScene :public App::Scene
 {
 private:
 	// stuff for animating the background
-	Color bgcolor;
+	glm::vec3 bgcolor;
 	DrawableTexRect bg;
 	DrawableText title;
 	DrawableText Continue;
-	Vec2 titleswoopin;
-	Vec2 contswoopin;
+	glm::vec2 titleswoopin;
+	glm::vec2 contswoopin;
 	int contvis;
 public:
 	TitleScene(App* a,std::string label);

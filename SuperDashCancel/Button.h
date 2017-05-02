@@ -16,14 +16,14 @@ public:
 	 Button* Left;
 	 Button* Right;
 	
-	Color altCol;
+	glm::vec3 altCol;
 	virtual void Activate()=0;// callbacks dont work for our use case, needs to be nonstatic
 	void AttachNeighbors( Button* above = 0,  Button* below = 0,  Button* left = 0,  Button* right = 0);
 
 	Button();
 	Button(FontEngine*f);
 	
-	Button(FontEngine*f, std::string s, Vec2  Pos, float fontscale, Color col);
+	Button(FontEngine*f, std::string s, glm::vec2  Pos, float fontscale, glm::vec3 col);
 
 	~Button();
 	

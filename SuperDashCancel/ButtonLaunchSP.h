@@ -7,7 +7,7 @@ class ButtonLaunchSP :
 	App* app;
 public:
 	ButtonLaunchSP();
-	ButtonLaunchSP(App* a,FontEngine*f, std::string s, Vec2  Pos, float fontscale, Color col);
+	ButtonLaunchSP(App* a,FontEngine*f, std::string s, glm::vec2  Pos, float fontscale, glm::vec3 col);
 	void Activate();
 	~ButtonLaunchSP();
 };

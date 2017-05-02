@@ -12,7 +12,7 @@ public:
 
 	DrawableTexRect();
 	~DrawableTexRect();
-	DrawableTexRect(Vec2 Pos, Vec2 Scale, Color Color);
+	DrawableTexRect(glm::vec2 Pos, glm::vec2 Scale, glm::vec3 Color);
 	void loadTexture(const char* filename, TEXLOADCONFIG t);
 	void Draw();
 

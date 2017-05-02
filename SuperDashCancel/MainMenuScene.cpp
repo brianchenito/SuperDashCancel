@@ -4,18 +4,18 @@
 
 MainMenuScene::MainMenuScene(App * a, std::string label):Scene(a, label)
 {
-	bg.setPos(Vec2(-1, -1));
+	bg.setPos(glm::vec2(-1, -1));
 	bg.setScale(2, 2);
-	bgcolor = Color(0.86f, 0.85f, 0.8f, 1);
+	bgcolor = glm::vec3(0.86f, 0.85f, 0.8f);
 	bg.setColor(bgcolor);
 	bg.loadTexture("../SuperDashCancel/textures/texture2.png", NOALPHA);
 
 	// setup buttons
 
-	UnselectedButtonColor = Color(0.6f, 0.6f, 0.6f, 1.0f);
-	SelectedButtonColor = Color(0.6f, 0.3f, 0.3f, 1);
-	buttonsp = ButtonLaunchSP(app, &app->fontengine, "Single player", Vec2(-0.53f, 0.35f), 0.55f, SelectedButtonColor);
-	buttonmp = ButtonLaunchSP(app, &app->fontengine, "Two Player Vs", Vec2(0.12f, 0.35f), 0.50f, UnselectedButtonColor);
+	UnselectedButtonColor = glm::vec3(0.6f, 0.6f, 0.6f);
+	SelectedButtonColor = glm::vec3(0.6f, 0.3f, 0.3f);
+	buttonsp = ButtonLaunchSP(app, &app->fontengine, "Single player", glm::vec2(-0.53f, 0.35f), 0.55f, SelectedButtonColor);
+	buttonmp = ButtonLaunchSP(app, &app->fontengine, "Two Player Vs", glm::vec2(0.12f, 0.35f), 0.50f, UnselectedButtonColor);
 	buttonsp.AttachNeighbors(0, 0, 0, &buttonmp);
 	buttonmp.AttachNeighbors(0, 0, &buttonsp, 0);
 	activeButton = &buttonsp;
@@ -52,7 +52,7 @@ void MainMenuScene::OnFixedUpdate()
 	if (bgpower > 0) 
 	{
 		bgpower -= 0.010f;
-		bg.setColor(Color(0.98f, 0.75f, 0.88f, 1)*(1-bgpower)+ bgcolor*bgpower);
+		bg.setglm::vec3(glm::vec3(0.98f, 0.75f, 0.88f, 1)*(1-bgpower)+ bgcolor*bgpower);
 
 	}
 	*/

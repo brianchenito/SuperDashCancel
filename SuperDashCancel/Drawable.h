@@ -5,9 +5,7 @@
 
 #include <stb_image.h>
 #include <GLFW/glfw3.h>
-#include "Vec2.h"
-#include "Vec3.h"
-#include "Color.h"
+#include "glm/glm.hpp"
 #include <iostream>
 
 
@@ -15,25 +13,25 @@
 class Drawable
 {
 protected:
-	Vec2 pos;//position and scale are in screenspace :[-1,1]
-	Vec2 scale;
-	Color col;
+	glm::vec2 pos;//position and scale are in screenspace :[-1,1]
+	glm::vec2 scale;
+	glm::vec3 col;
 public:
 	//Coordinates
 
 	void setPos(float x, float y);
-	void setPos(Vec2 pos);
+	void setPos(glm::vec2 pos);
 	void setScale(float x, float y);
-	void setScale(Vec2 Scale);
+	void setScale(glm::vec2 Scale);
 	void setColor(float r, float g, float b, float a);
-	void setColor(const Color& c);
+	void setColor(const glm::vec3 c);
 
-	Vec2 GetPos() { return pos; }
+	glm::vec2 GetPos() { return pos; }
 
-	static Vec2 PixelSpaceToScreenSpace(Vec2 v);
-	static Vec2 ScreenSpaceToPixelSpace(Vec2 v);
+	static glm::vec2 PixelSpaceToScreenSpace(glm::vec2 v);
+	static glm::vec2 ScreenSpaceToPixelSpace(glm::vec2 v);
 	Drawable();
-	Drawable(Vec2 Pos, Vec2 Scale, Color col);
+	Drawable(glm::vec2 Pos, glm::vec2 Scale, glm::vec3 c);
 	~Drawable();
 	virtual void Draw()=0;
 

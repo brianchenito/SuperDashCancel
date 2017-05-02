@@ -48,15 +48,6 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="Vec2.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="Vec3.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
     <ClCompile Include="FontEngine.cpp">
       <Filter>Util</Filter>
     </ClCompile>
@@ -75,6 +66,7 @@
     <ClCompile Include="ButtonLaunchSP.cpp">
       <Filter>Drawable\Buttons</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerCharacter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drawable.h">
@@ -170,15 +162,6 @@
     <ClInclude Include="glm\vector_relational.hpp">
       <Filter>glm</Filter>
     </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec2.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec3.h">
-      <Filter>Util</Filter>
-    </ClInclude>
     <ClInclude Include="shader.h">
       <Filter>Util</Filter>
     </ClInclude>
@@ -200,5 +183,6 @@
     <ClInclude Include="ButtonLaunchSP.h">
       <Filter>Drawable\Buttons</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerCharacter.h" />
   </ItemGroup>
 </Project>

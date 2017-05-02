@@ -14,7 +14,7 @@ public:
 
 	DrawableText();
 	DrawableText(FontEngine*f);
-	DrawableText(FontEngine*f,std::string s, Vec2  Pos, float fontscale , Color col);
+	DrawableText(FontEngine*f,std::string s, glm::vec2  Pos, float fontscale , glm::vec3 col);
 	~DrawableText();
 	void Draw();
 };

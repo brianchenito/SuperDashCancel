@@ -12,13 +12,13 @@ class MainMenuScene :public App::Scene
 {
 
 	float bgpower;
-	Color bgcolor;
+	glm::vec3 bgcolor;
 	DrawableTexRect bg;
 	ButtonLaunchSP buttonsp;
 	ButtonLaunchSP buttonmp;
 	Button* activeButton;
-	Color SelectedButtonColor;
-	Color UnselectedButtonColor;
+	glm::vec3 SelectedButtonColor;
+	glm::vec3 UnselectedButtonColor;
 	
 public:
 	MainMenuScene(App* a, std::string label);

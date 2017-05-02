@@ -12,19 +12,17 @@ DrawableTexRect::~DrawableTexRect()
 	scale.y = 5;
 }
 
-DrawableTexRect::DrawableTexRect(Vec2 Pos, Vec2 Scale, Color Color)
+DrawableTexRect::DrawableTexRect(glm::vec2 Pos, glm::vec2 Scale, glm::vec3 Color)
 {
 	this->pos=Pos;
 	this->scale=Scale;
-	this->col = Color;
+	this->col =Color;
 }
 
 void DrawableTexRect::loadTexture(const char * filename, TEXLOADCONFIG t)
 {
-	//glClearColor(0.0, 0.0, 0.0, 0.0);
 	glShadeModel(GL_FLAT);
 	//glEnable(GL_DEPTH_TEST);
-	//////
 
 	int w;
 	int h;
@@ -55,7 +53,7 @@ void DrawableTexRect::loadTexture(const char * filename, TEXLOADCONFIG t)
 void DrawableTexRect::Draw()
 {
 
-	glColor4f(col.r,col.g,col.b,col.a);
+	glColor3f(col.r,col.g,col.b);
 	glBindTexture(GL_TEXTURE_2D, TexID);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_COLOR_MATERIAL);

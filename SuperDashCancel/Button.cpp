@@ -9,7 +9,7 @@ Button::Button(FontEngine * f):DrawableText(f)
 {
 }
 
-Button::Button(FontEngine * f, std::string s, Vec2 Pos, float fontscale, Color col):DrawableText(f,s, Pos, fontscale,col)
+Button::Button(FontEngine * f, std::string s, glm::vec2 Pos, float fontscale, glm::vec3 col):DrawableText(f,s, Pos, fontscale,col)
 {
 	
 }
