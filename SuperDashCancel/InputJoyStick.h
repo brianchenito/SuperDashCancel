@@ -9,6 +9,11 @@ class InputJoyStick :public InputDevice
 private:
 	bool pressed[8];
 	bool held[8];
+	//keybinds
+	int Light;
+	int Heavy;
+	int Enter;
+	int Cancel;
 public:
 	InputJoyStick(GLFWwindow * window, int id);
 	~InputJoyStick();

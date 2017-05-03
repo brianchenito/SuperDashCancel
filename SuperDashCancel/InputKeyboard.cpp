@@ -44,8 +44,10 @@ InputKeyboard::~InputKeyboard()
 
 void InputKeyboard::FixedStep()
 {
+
 	for (int i = 0; i < 8; i++) 
 	{
+		pressed[i] = false;
 		if (glfwGetKey(window, keybinds[i]) == GLFW_PRESS) 
 		{
 			pressed[i] = !held[i];

@@ -22,6 +22,10 @@ InputJoyStick::~InputJoyStick()
 
 void InputJoyStick::FixedStep()
 {
+	for (int i = 0; i < 8; i++)
+	{
+		pressed[i] = false;
+	}
 	if (glfwJoystickPresent(FlagID) == GLFW_TRUE) 
 	{
 		// do stuff for directionals
@@ -65,22 +69,29 @@ void InputJoyStick::FixedStep()
 		}
 		int buttoncount;
 		const unsigned char* buttons = glfwGetJoystickButtons(FlagID, &buttoncount);
-		if (buttoncount >= 2) 
-		{/* if you dont have two or more buttons on your 
-		 stick you should prob get a new stick */
-			if (buttons[0] == GLFW_PRESS) 
+	
+		bool lightFlag = false;
+		bool heavyFlag = false;
+		for (int i = 0; i < buttoncount; i++) 
+		{
+			if (buttons[i] == GLFW_PRESS) 
 			{
-				pressed[Input_Light] = !held[Input_Light];
-				held[Input_Light] = true;
+				if (i % 2 == 0&&!lightFlag) 
+				{
+					pressed[Input_Light] = !held[Input_Light];
+					held[Input_Light] = true;
+					lightFlag = true;
+				}
+				else if (i % 2 != 0 && !heavyFlag) 
+				{
+					pressed[Input_Heavy] = !held[Input_Heavy];
+					held[Input_Heavy] = true;
+					heavyFlag = true;
+				}
 			}
-			else held[Input_Light] = false;
-			if (buttons[1] == GLFW_PRESS)
-			{
-				pressed[Input_Heavy] = !held[Input_Heavy];
-				held[Input_Heavy] = true;
-			} 
-			else held[Input_Heavy] = false;
 		}
+		if (!lightFlag)	held[Input_Light] = false;
+		if (!heavyFlag)	held[Input_Heavy] = false;
 	}
 }
 
