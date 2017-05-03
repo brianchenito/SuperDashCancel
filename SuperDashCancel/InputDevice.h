@@ -10,6 +10,7 @@ class InputDevice
 {
 	
 public:
+	int FlagID;
 	GLFWwindow* window;
 	std::string Label;
 	InputDevice(GLFWwindow* window);

@@ -13,7 +13,6 @@ class TitleScene :public App::Scene
 {
 private:
 	// stuff for animating the background
-	glm::vec3 bgcolor;
 	DrawableTexRect bg;
 	DrawableText title;
 	DrawableText Continue;

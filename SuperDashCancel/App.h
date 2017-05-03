@@ -49,10 +49,10 @@ public:
 
 	std::map<std::string, Scene*> Scenes;// all scenes that belong to this app
 
-	InputManager inputmanager;
 	GLFWwindow* window;
 	Scene* ActiveScene;
 	FontEngine fontengine;
+	Shader SpriteShader;
 	App();
 	~App();
 	void SwitchScene(std::string Scene); //kill current scene, fire up new one

@@ -7,14 +7,13 @@ App::App()
 	NextFixedTime = TIMESTEP;
 	
 	GLFWInitialize();
+	
 	GLEWInitialize();
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glEnable(GL_MULTISAMPLE);
 	fontengine.init();
 	std::cout << "All OpenGL Libraries Initialized\n\n";
-
-	/* Scene Init */
-	inputmanager.Init(window);
+	InputManager::Init(window);
 
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
@@ -80,7 +79,7 @@ void App::GLEWInitialize()
 void App::FixedStep()
 {
 	Render();
-	inputmanager.FixedStep();
+	InputManager::FixedStep();
 	if (ActiveScene)ActiveScene->OnFixedUpdate();
 	FPS = (FPSCOUNTERSMOOTH*FPS)+(1-FPSCOUNTERSMOOTH)*(1/(glfwGetTime() - LastFrameTime));
 	NextFixedTime += TIMESTEP;

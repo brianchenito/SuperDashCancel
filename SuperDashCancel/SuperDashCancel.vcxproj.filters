@@ -63,10 +63,13 @@
     <ClCompile Include="Button.cpp">
       <Filter>Drawable\Buttons</Filter>
     </ClCompile>
-    <ClCompile Include="ButtonLaunchSP.cpp">
+    <ClCompile Include="PlayerCharacter.cpp" />
+    <ClCompile Include="ButtonLaunchMP.cpp">
       <Filter>Drawable\Buttons</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerCharacter.cpp" />
+    <ClCompile Include="InputJoyStick.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drawable.h">
@@ -180,9 +183,12 @@
     <ClInclude Include="Button.h">
       <Filter>Drawable\Buttons</Filter>
     </ClInclude>
-    <ClInclude Include="ButtonLaunchSP.h">
+    <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="ButtonLaunchMP.h">
       <Filter>Drawable\Buttons</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="InputJoyStick.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

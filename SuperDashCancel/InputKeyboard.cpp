@@ -2,6 +2,7 @@
 
 InputKeyboard::InputKeyboard(GLFWwindow * window, bool isPlayer1):InputDevice(window)
 {
+	FlagID = -1;
 	if (isPlayer1) 
 	{
 		Label = "Keyboard 0";

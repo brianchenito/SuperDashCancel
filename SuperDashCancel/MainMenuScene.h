@@ -4,7 +4,7 @@
 
 #include "App.h"
 #include "DrawableTexRect.h"
-#include "ButtonLaunchSP.h"
+#include "ButtonLaunchMP.h"
 #include "DrawableText.h"
 #include <math.h>
 
@@ -12,10 +12,9 @@ class MainMenuScene :public App::Scene
 {
 
 	float bgpower;
-	glm::vec3 bgcolor;
 	DrawableTexRect bg;
-	ButtonLaunchSP buttonsp;
-	ButtonLaunchSP buttonmp;
+	ButtonLaunchMP buttonsp;
+	ButtonLaunchMP buttonmp;
 	Button* activeButton;
 	glm::vec3 SelectedButtonColor;
 	glm::vec3 UnselectedButtonColor;

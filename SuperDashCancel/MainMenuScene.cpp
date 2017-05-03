@@ -4,18 +4,15 @@
 
 MainMenuScene::MainMenuScene(App * a, std::string label):Scene(a, label)
 {
-	bg.setPos(glm::vec2(-1, -1));
-	bg.setScale(2, 2);
-	bgcolor = glm::vec3(0.86f, 0.85f, 0.8f);
-	bg.setColor(bgcolor);
+	bg = DrawableTexRect(&app->SpriteShader, glm::vec2(-1, -1), glm::vec2(2, 2), glm::vec3(0.86f, 0.85f, 0.8f));
 	bg.loadTexture("../SuperDashCancel/textures/texture2.png", NOALPHA);
 
 	// setup buttons
 
 	UnselectedButtonColor = glm::vec3(0.6f, 0.6f, 0.6f);
 	SelectedButtonColor = glm::vec3(0.6f, 0.3f, 0.3f);
-	buttonsp = ButtonLaunchSP(app, &app->fontengine, "Single player", glm::vec2(-0.53f, 0.35f), 0.55f, SelectedButtonColor);
-	buttonmp = ButtonLaunchSP(app, &app->fontengine, "Two Player Vs", glm::vec2(0.12f, 0.35f), 0.50f, UnselectedButtonColor);
+	buttonsp = ButtonLaunchMP(app, &app->fontengine, "Single player", glm::vec2(-0.53f, 0.35f), 0.55f, SelectedButtonColor);
+	buttonmp = ButtonLaunchMP(app, &app->fontengine, "Two Player Vs", glm::vec2(0.12f, 0.35f), 0.50f, UnselectedButtonColor);
 	buttonsp.AttachNeighbors(0, 0, 0, &buttonmp);
 	buttonmp.AttachNeighbors(0, 0, &buttonsp, 0);
 	activeButton = &buttonsp;
@@ -56,15 +53,15 @@ void MainMenuScene::OnFixedUpdate()
 
 	}
 	*/
-	if (app->inputmanager.GlobalPressed(Input_Heavy) || app->inputmanager.GlobalPressed(Input_Delete))
+	if (InputManager::GlobalPressed(Input_Heavy) || InputManager::GlobalPressed(Input_Delete))
 	{
 		app->SwitchScene("TitleScreen");
 	}
-	if (app->inputmanager.GlobalPressed(Input_Light) || app->inputmanager.GlobalPressed(Input_Enter))
+	if (InputManager::GlobalPressed(Input_Light) || InputManager::GlobalPressed(Input_Enter))
 	{
 		activeButton->Activate();
 	}
-	if (app->inputmanager.GlobalPressed(Input_Left) )
+	if (InputManager::GlobalPressed(Input_Left) )
 	{
 		if (activeButton->Left) {
 			activeButton = activeButton->Left;
@@ -76,7 +73,7 @@ void MainMenuScene::OnFixedUpdate()
 			activeButton->fontScale = 0.55f;
 		} 
 	}
-	if (app->inputmanager.GlobalPressed(Input_Right))
+	if (InputManager::GlobalPressed(Input_Right))
 	{
 		if (activeButton->Right) {
 			activeButton = activeButton->Right;

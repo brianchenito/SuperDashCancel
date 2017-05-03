@@ -14,9 +14,7 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init() 
 {
-	bg.setPos(glm::vec2(-1, -1));
-	bg.setScale(2, 2);
-	bg.setColor(glm::vec3(0.86f, 0.85f, 0.8f));
+	bg = DrawableTexRect(&app->SpriteShader, glm::vec2(-1, -1), glm::vec2(2, 2), glm::vec3(0.86f, 0.85f, 0.8f));
 	bg.loadTexture("../SuperDashCancel/textures/texture2.png", NOALPHA);
 
 	title = DrawableText(&app->fontengine, "SUPERDASHCANCEL", glm::vec2(-0.545f, 0.3f), 1.0f, glm::vec3(0.3f, 0.3f, 0.3f));
@@ -44,7 +42,7 @@ void TitleScene::OnUpdate()
 
 void TitleScene::OnFixedUpdate()
 {
-	if (app->inputmanager.GlobalPressed(Input_Light) || app->inputmanager.GlobalPressed(Input_Enter))
+	if (InputManager::GlobalPressed(Input_Light) || InputManager::GlobalPressed(Input_Enter))
 	{
 		app->SwitchScene("MainMenuScreen");
 	}

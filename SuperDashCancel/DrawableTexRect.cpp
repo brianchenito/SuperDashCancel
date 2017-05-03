@@ -12,8 +12,9 @@ DrawableTexRect::~DrawableTexRect()
 	scale.y = 5;
 }
 
-DrawableTexRect::DrawableTexRect(glm::vec2 Pos, glm::vec2 Scale, glm::vec3 Color)
+DrawableTexRect::DrawableTexRect(Shader* SpriteShader, glm::vec2 Pos, glm::vec2 Scale, glm::vec3 Color)
 {
+	this->SpriteShader = SpriteShader;
 	this->pos=Pos;
 	this->scale=Scale;
 	this->col =Color;
