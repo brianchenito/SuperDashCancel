@@ -7,26 +7,26 @@
 
 MPReadyUpScene::MPReadyUpScene(App * a, std::string label):Scene(a,label)
 {
-	bg = DrawableTexRect(&app->SpriteShader, glm::vec2(-1, -1), glm::vec2(2, 2), glm::vec3(0.86f, 0.85f, 0.8f));
+	bg = DrawableSprite( glm::vec2(0,0), glm::vec2(1280,720), glm::vec3(0.86f, 0.85f, 0.8f));
 	bg.loadTexture("../SuperDashCancel/textures/texture2.png", NOALPHA);
 
 	// setup icons
-	p1Blank = DrawableTexRect(&app->SpriteShader, glm::vec2(-0.4, -0.2f),glm::vec2(0.09,0.16)*3, glm::vec3(0.3f, 0.3f, 0.3f));
+	p1Blank = DrawableSprite( glm::vec2(400,310),glm::vec2(128,128), glm::vec3(0.3f, 0.3f, 0.3f));
 	p1Blank.loadTexture("../SuperDashCancel/textures/texture1.png", ALPHA);
 
-	p2Blank = DrawableTexRect(&app->SpriteShader, glm::vec2(0.1275f, -0.2f), glm::vec2(0.09, 0.16) * 3, glm::vec3(0.3f, 0.3f, 0.3f));
+	p2Blank = DrawableSprite( glm::vec2(735, 310), glm::vec2(128, 128), glm::vec3(0.3f, 0.3f, 0.3f));
 	p2Blank.loadTexture("../SuperDashCancel/textures/texture1.png", ALPHA);
 	p1Scale = 0.0f;
 	p2Scale = 0.0f;
-	p1Symbol = DrawableTexRect(&app->SpriteShader, glm::vec2(-0.4, -0.2f), glm::vec2(0.09, 0.16) * p1Scale, glm::vec3(0.97f, 0.95f, 0.94f));
+	p1Symbol = DrawableSprite( glm::vec2(400, 310), glm::vec2(128, 128) * p1Scale, glm::vec3(0.97f, 0.95f, 0.94f));
 	p1Symbol.loadTexture("../SuperDashCancel/textures/texture4.png", ALPHA);
 
-	p2Symbol = DrawableTexRect(&app->SpriteShader, glm::vec2(0.1275f, -0.2f), glm::vec2(0.09, 0.16) * p2Scale, glm::vec3(0.6f, 0.3f, 0.3f));
+	p2Symbol = DrawableSprite( glm::vec2(735, 310), glm::vec2(128, 128) * p2Scale, glm::vec3(0.6f, 0.3f, 0.3f));
 	p1Symbol.loadTexture("../SuperDashCancel/textures/texture4.png", ALPHA);
 	//setup text
-	Instruct = DrawableText(&app->fontengine, "Hold Button 1 to Ready Up", glm::vec2(-0.34f, -0.2f), 0.4f, glm::vec3(0.3f, 0.3f, 0.3f));
-	p1text =  DrawableText(&app->fontengine, "Player 1", glm::vec2(-0.36f, 0.6f), 0.4f, glm::vec3(0.6f, 0.3f, 0.3f));
-	p2text = DrawableText(&app->fontengine, "Player 2", glm::vec2(0.16f, 0.6f), 0.4f, glm::vec3(0.8f, 0.65f, 0.5f));
+	Instruct = DrawableText(&app->fontengine, "Hold Button 1 to Ready Up", glm::vec2(422, 200), 0.4f, glm::vec3(0.3f, 0.3f, 0.3f));
+	p1text =  DrawableText(&app->fontengine, "Player 1", glm::vec2(408, 400), 0.35f, glm::vec3(0.6f, 0.3f, 0.3f));
+	p2text = DrawableText(&app->fontengine, "Player 2", glm::vec2(743, 400), 0.33f, glm::vec3(0.8f, 0.65f, 0.5f));
 
 }
 
@@ -73,30 +73,30 @@ void MPReadyUpScene::OnFixedUpdate()
 	{
 		app->SwitchScene("MainMenuScreen");
 	}
-	if (InputManager::Held(Input_Light, true)&&p1Scale<2.9f) 
+	if (InputManager::Held(Input_Light, true)&&p1Scale<1) 
 	{
-		p1Scale += 0.15f;
-		p1Symbol.setScale(glm::vec2(0.27, 0.16* p1Scale) );
+		p1Scale += 0.05f;
+		p1Symbol.setScale(glm::vec2(128, 128* p1Scale) );
 	}
-	else if(p1Scale < 2.9f&&p1Scale>0) 
+	else if(p1Scale < 1&&p1Scale>0) 
 	{
-		p1Scale -= 0.3f;
-		p1Symbol.setScale(glm::vec2(0.27, 0.16* p1Scale));
+		p1Scale -= 0.1f;
+		p1Symbol.setScale(glm::vec2(128, 128 * p1Scale));
 
 	}
 
-	if (InputManager::Held(Input_Light, false) && p2Scale<2.9f)
+	if (InputManager::Held(Input_Light, false) && p2Scale<1)
 	{
-		p2Scale += 0.15f;
-		p2Symbol.setScale(glm::vec2(0.27, 0.16* p2Scale));
+		p2Scale += 0.05f;
+		p2Symbol.setScale(glm::vec2(128, 128 * p2Scale));
 	}
-	else if (p2Scale < 2.9f&&p2Scale>0)
+	else if (p2Scale < 1&&p2Scale>0)
 	{
-		p2Scale -= 0.3f;
-		p2Symbol.setScale(glm::vec2(0.27, 0.16* p2Scale));
+		p2Scale -= 0.1f;
+		p2Symbol.setScale(glm::vec2(128, 128 * p2Scale));
 
 	}
-	if (p1Scale >= 2.9 && p2Scale >= 2.9) 
+	if (p1Scale >= 1 && p2Scale >= 1) 
 	{
 		std::cout << "LAUNCH\n";
 		app->SwitchScene("TitleScreen");

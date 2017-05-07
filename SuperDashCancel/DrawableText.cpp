@@ -24,6 +24,5 @@ DrawableText::~DrawableText()
 
 void DrawableText::Draw()
 {
-	glm::vec2 coords = Drawable::ScreenSpaceToPixelSpace(pos);
-	f->RenderText(text, coords.x, coords.y, fontScale, glm::vec3(col.r, col.g, col.b));
+	f->RenderText(text, pos.x, pos.y, fontScale, glm::vec3(col.r, col.g, col.b));
 }

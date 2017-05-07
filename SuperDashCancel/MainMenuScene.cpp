@@ -4,15 +4,15 @@
 
 MainMenuScene::MainMenuScene(App * a, std::string label):Scene(a, label)
 {
-	bg = DrawableTexRect(&app->SpriteShader, glm::vec2(-1, -1), glm::vec2(2, 2), glm::vec3(0.86f, 0.85f, 0.8f));
+	bg = DrawableSprite(glm::vec2(0,0), glm::vec2(1280,720), glm::vec3(0.86f, 0.85f, 0.8f));
 	bg.loadTexture("../SuperDashCancel/textures/texture2.png", NOALPHA);
 
 	// setup buttons
 
 	UnselectedButtonColor = glm::vec3(0.6f, 0.6f, 0.6f);
 	SelectedButtonColor = glm::vec3(0.6f, 0.3f, 0.3f);
-	buttonsp = ButtonLaunchMP(app, &app->fontengine, "Single player", glm::vec2(-0.53f, 0.35f), 0.55f, SelectedButtonColor);
-	buttonmp = ButtonLaunchMP(app, &app->fontengine, "Two Player Vs", glm::vec2(0.12f, 0.35f), 0.50f, UnselectedButtonColor);
+	buttonsp = ButtonLaunchMP(app, &app->fontengine, "Single player", glm::vec2(290, 370), 0.55f, SelectedButtonColor);
+	buttonmp = ButtonLaunchMP(app, &app->fontengine, "Two Player Vs", glm::vec2(700, 370), 0.50f, UnselectedButtonColor);
 	buttonsp.AttachNeighbors(0, 0, 0, &buttonmp);
 	buttonmp.AttachNeighbors(0, 0, &buttonsp, 0);
 	activeButton = &buttonsp;

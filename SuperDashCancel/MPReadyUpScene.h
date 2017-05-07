@@ -4,15 +4,15 @@
 
 
 #include "App.h"
-#include "DrawableTexRect.h"
+#include "DrawableSprite.h"
 #include "DrawableText.h"
 class MPReadyUpScene :public App::Scene
 {
-	DrawableTexRect bg;
-	DrawableTexRect p1Symbol;
-	DrawableTexRect p2Symbol;
-	DrawableTexRect p1Blank;
-	DrawableTexRect p2Blank;
+	DrawableSprite bg;
+	DrawableSprite p1Symbol;
+	DrawableSprite p2Symbol;
+	DrawableSprite p1Blank;
+	DrawableSprite p2Blank;
 	DrawableText p1text;
 	DrawableText p2text;
 	DrawableText Instruct;

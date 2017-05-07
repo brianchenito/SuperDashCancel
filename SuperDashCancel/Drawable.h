@@ -6,6 +6,7 @@
 #include <stb_image.h>
 #include <GLFW/glfw3.h>
 #include "glm/glm.hpp"
+#include "glm/ext.hpp"
 #include <iostream>
 
 
@@ -13,7 +14,8 @@
 class Drawable
 {
 protected:
-	glm::vec2 pos;//position and scale are in screenspace :[-1,1]
+	glm::mat4 projection = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f);
+	glm::vec2 pos;//position and scale are in pixel space
 	glm::vec2 scale;
 	glm::vec3 col;
 public:
@@ -28,12 +30,11 @@ public:
 
 	glm::vec2 GetPos() { return pos; }
 
-	static glm::vec2 PixelSpaceToScreenSpace(glm::vec2 v);
-	static glm::vec2 ScreenSpaceToPixelSpace(glm::vec2 v);
 	Drawable();
 	Drawable(glm::vec2 Pos, glm::vec2 Scale, glm::vec3 c);
 	~Drawable();
 	virtual void Draw()=0;
 
 };
+
 #endif // !SDC_DRAWABLE_H

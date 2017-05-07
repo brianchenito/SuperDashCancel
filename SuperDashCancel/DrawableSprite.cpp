@@ -1,26 +1,26 @@
-#include "DrawableTexRect.h"
+#include "DrawableSprite.h"
 
 
-DrawableTexRect::DrawableTexRect()
+DrawableSprite::DrawableSprite()
 {
 }
 
 
-DrawableTexRect::~DrawableTexRect()
+DrawableSprite::~DrawableSprite()
 {
 	scale.x = 5;
 	scale.y = 5;
 }
 
-DrawableTexRect::DrawableTexRect(Shader* SpriteShader, glm::vec2 Pos, glm::vec2 Scale, glm::vec3 Color)
+DrawableSprite::DrawableSprite( glm::vec2 Pos, glm::vec2 Scale, glm::vec3 Color)
 {
-	this->SpriteShader = SpriteShader;
+
 	this->pos=Pos;
 	this->scale=Scale;
 	this->col =Color;
 }
 
-void DrawableTexRect::loadTexture(const char * filename, TEXLOADCONFIG t)
+void DrawableSprite::loadTexture(const char * filename, TEXLOADCONFIG t)
 {
 	glShadeModel(GL_FLAT);
 	//glEnable(GL_DEPTH_TEST);
@@ -51,9 +51,10 @@ void DrawableTexRect::loadTexture(const char * filename, TEXLOADCONFIG t)
 	stbi_image_free(image);
 }
 
-void DrawableTexRect::Draw()
+void DrawableSprite::Draw()
 {
 
+	
 	glColor3f(col.r,col.g,col.b);
 	glBindTexture(GL_TEXTURE_2D, TexID);
 	glEnable(GL_TEXTURE_2D);
@@ -64,20 +65,24 @@ void DrawableTexRect::Draw()
 	glBegin(GL_QUADS);
 
 	glTexCoord2f(0.0, 1.0);
-	glVertex2f(pos.x, pos.y);
+	glm::vec2 coords = projection*glm::vec4(pos.x,pos.y,0,1);
+	glm::vec2 coords2 = projection*glm::vec4(pos.x+scale.x, pos.y+scale.y, 0, 1);
+
+	std::cout << coords.x << " " << coords.y << "\n";
+	glVertex2f(coords.x, coords.y);
 
 	glTexCoord2f(1.0, 1.0);
-	glVertex2f(pos.x+scale.x, pos.y);
+	glVertex2f(coords2.x, coords.y);
 
 	glTexCoord2f(1.0, 0.0);
-	glVertex2f(pos.x + scale.x, pos.y+scale.y);
+	glVertex2f(coords2.x,coords2.y);
 
 	glTexCoord2f(0.0, 0.0);
-	glVertex2f(pos.x, pos.y + scale.y);
+	glVertex2f(coords.x, coords2.y);
 
 	glEnd();
 
 	glDisable(GL_TEXTURE_2D);
-
+	
 }
 

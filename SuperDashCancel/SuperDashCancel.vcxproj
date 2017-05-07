@@ -136,7 +136,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonLaunchMP.cpp" />
     <ClCompile Include="Drawable.cpp" />
-    <ClCompile Include="DrawableTexRect.cpp" />
+    <ClCompile Include="DrawableSprite.cpp" />
     <ClCompile Include="DrawableText.cpp" />
     <ClCompile Include="FontEngine.cpp" />
     <ClCompile Include="InputDevice.cpp" />
@@ -153,7 +153,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonLaunchMP.h" />
     <ClInclude Include="Drawable.h" />
-    <ClInclude Include="DrawableTexRect.h" />
+    <ClInclude Include="DrawableSprite.h" />
     <ClInclude Include="DrawableText.h" />
     <ClInclude Include="FontEngine.h" />
     <ClInclude Include="glm\common.hpp" />

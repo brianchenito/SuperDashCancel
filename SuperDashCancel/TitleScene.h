@@ -4,7 +4,7 @@
 
 
 #include "App.h"
-#include "DrawableTexRect.h"
+#include "DrawableSprite.h"
 #include "Button.h"
 #include "DrawableText.h"
 #include <math.h>
@@ -13,7 +13,7 @@ class TitleScene :public App::Scene
 {
 private:
 	// stuff for animating the background
-	DrawableTexRect bg;
+	DrawableSprite bg;
 	DrawableText title;
 	DrawableText Continue;
 	glm::vec2 titleswoopin;

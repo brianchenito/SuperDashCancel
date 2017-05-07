@@ -3,7 +3,7 @@
 #define SDC_MAINMENUSCENE_H
 
 #include "App.h"
-#include "DrawableTexRect.h"
+#include "DrawableSprite.h"
 #include "ButtonLaunchMP.h"
 #include "DrawableText.h"
 #include <math.h>
@@ -12,7 +12,7 @@ class MainMenuScene :public App::Scene
 {
 
 	float bgpower;
-	DrawableTexRect bg;
+	DrawableSprite bg;
 	ButtonLaunchMP buttonsp;
 	ButtonLaunchMP buttonmp;
 	Button* activeButton;

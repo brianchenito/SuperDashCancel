@@ -24,9 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DrawableTexRect.cpp">
-      <Filter>Drawable</Filter>
-    </ClCompile>
     <ClCompile Include="Drawable.cpp">
       <Filter>Drawable</Filter>
     </ClCompile>
@@ -70,12 +67,12 @@
     <ClCompile Include="InputJoyStick.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="DrawableSprite.cpp">
+      <Filter>Drawable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drawable.h">
-      <Filter>Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawableTexRect.h">
       <Filter>Drawable</Filter>
     </ClInclude>
     <ClInclude Include="App.h">
@@ -189,6 +186,9 @@
     </ClInclude>
     <ClInclude Include="InputJoyStick.h">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableSprite.h">
+      <Filter>Drawable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
