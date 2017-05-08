@@ -18,10 +18,10 @@ MPReadyUpScene::MPReadyUpScene(App * a, std::string label):Scene(a,label)
 	p2Blank.loadTexture("../SuperDashCancel/textures/texture1.png", ALPHA);
 	p1Scale = 0.0f;
 	p2Scale = 0.0f;
-	p1Symbol = DrawableSprite( glm::vec2(400, 310), glm::vec2(128, 128) * p1Scale, glm::vec3(0.97f, 0.95f, 0.94f));
+	p1Symbol = DrawableSprite( glm::vec2(400, 310), glm::vec2(128, 128) * p1Scale, PLAYER_ONE_COLOR);
 	p1Symbol.loadTexture("../SuperDashCancel/textures/texture4.png", ALPHA);
 
-	p2Symbol = DrawableSprite( glm::vec2(735, 310), glm::vec2(128, 128) * p2Scale, glm::vec3(0.6f, 0.3f, 0.3f));
+	p2Symbol = DrawableSprite( glm::vec2(735, 310), glm::vec2(128, 128) * p2Scale, PLAYER_TWO_COLOR);
 	p1Symbol.loadTexture("../SuperDashCancel/textures/texture4.png", ALPHA);
 	//setup text
 	Instruct = DrawableText(&app->fontengine, "Hold Button 1 to Ready Up", glm::vec2(422, 200), 0.4f, glm::vec3(0.3f, 0.3f, 0.3f));
@@ -99,7 +99,7 @@ void MPReadyUpScene::OnFixedUpdate()
 	if (p1Scale >= 1 && p2Scale >= 1) 
 	{
 		std::cout << "LAUNCH\n";
-		app->SwitchScene("TitleScreen");
+		app->SwitchScene("GameScreen");
 	}
 
 }

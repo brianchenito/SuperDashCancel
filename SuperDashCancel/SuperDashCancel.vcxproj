@@ -131,31 +131,46 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Airborne.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AppMain.cpp" />
+    <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonLaunchMP.cpp" />
+    <ClCompile Include="Crouch.cpp" />
+    <ClCompile Include="CrouchBlock.cpp" />
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="DrawableSprite.cpp" />
     <ClCompile Include="DrawableText.cpp" />
     <ClCompile Include="FontEngine.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="HitStun.cpp" />
+    <ClCompile Include="Idle.cpp" />
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="InputJoyStick.cpp" />
     <ClCompile Include="InputKeyboard.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="LightAttack.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
+    <ClCompile Include="MoveBackward.cpp" />
+    <ClCompile Include="MoveForward.cpp" />
     <ClCompile Include="MPReadyUpScene.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Airborne.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="Attack.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonLaunchMP.h" />
+    <ClInclude Include="Crouch.h" />
+    <ClInclude Include="CrouchBlock.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="DrawableSprite.h" />
     <ClInclude Include="DrawableText.h" />
     <ClInclude Include="FontEngine.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="glm\common.hpp" />
     <ClInclude Include="glm\exponential.hpp" />
     <ClInclude Include="glm\ext.hpp" />
@@ -179,15 +194,22 @@
     <ClInclude Include="glm\vec3.hpp" />
     <ClInclude Include="glm\vec4.hpp" />
     <ClInclude Include="glm\vector_relational.hpp" />
+    <ClInclude Include="HitStun.h" />
+    <ClInclude Include="Idle.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputDevice.h" />
     <ClInclude Include="InputJoyStick.h" />
     <ClInclude Include="InputKeyboard.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="LightAttack.h" />
     <ClInclude Include="MainMenuScene.h" />
+    <ClInclude Include="MoveBackward.h" />
+    <ClInclude Include="MoveForward.h" />
     <ClInclude Include="MPReadyUpScene.h" />
     <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="presets.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="States.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

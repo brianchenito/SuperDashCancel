@@ -68,7 +68,7 @@ void DrawableSprite::Draw()
 	glm::vec2 coords = projection*glm::vec4(pos.x,pos.y,0,1);
 	glm::vec2 coords2 = projection*glm::vec4(pos.x+scale.x, pos.y+scale.y, 0, 1);
 
-	std::cout << coords.x << " " << coords.y << "\n";
+	//std::cout << coords.x << " " << coords.y << "\n";
 	glVertex2f(coords.x, coords.y);
 
 	glTexCoord2f(1.0, 1.0);

@@ -2,6 +2,7 @@
 #include "TitleScene.h"
 #include "MainMenuScene.h"
 #include "MPReadyUpScene.h"
+#include "GameScene.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 int main()
@@ -10,7 +11,8 @@ int main()
 	TitleScene t(&Game,"TitleScreen");
 	MainMenuScene m(&Game, "MainMenuScreen");
 	MPReadyUpScene mp(&Game, "MPReadyUpScreen");
-	Game.SwitchScene("TitleScreen");
+	GameScene g(&Game, "GameScreen");
+	Game.SwitchScene("GameScreen");
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(Game.window))
 	{

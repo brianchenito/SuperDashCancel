@@ -22,6 +22,12 @@
     <Filter Include="Drawable\Buttons">
       <UniqueIdentifier>{8979bde1-672e-4c67-b2f0-b29445d6ab35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayerCharacter">
+      <UniqueIdentifier>{e465ffe4-4f60-4bec-abac-fdf0b3df0f88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayerCharacter\States">
+      <UniqueIdentifier>{afd4cc2e-b41e-4004-9312-7c76cfc64874}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Drawable.cpp">
@@ -60,7 +66,6 @@
     <ClCompile Include="Button.cpp">
       <Filter>Drawable\Buttons</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="ButtonLaunchMP.cpp">
       <Filter>Drawable\Buttons</Filter>
     </ClCompile>
@@ -69,6 +74,39 @@
     </ClCompile>
     <ClCompile Include="DrawableSprite.cpp">
       <Filter>Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>App\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCharacter.cpp">
+      <Filter>PlayerCharacter</Filter>
+    </ClCompile>
+    <ClCompile Include="Idle.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveForward.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveBackward.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Crouch.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="CrouchBlock.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Airborne.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="HitStun.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="LightAttack.cpp">
+      <Filter>PlayerCharacter\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,7 +218,6 @@
     <ClInclude Include="Button.h">
       <Filter>Drawable\Buttons</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="ButtonLaunchMP.h">
       <Filter>Drawable\Buttons</Filter>
     </ClInclude>
@@ -189,6 +226,45 @@
     </ClInclude>
     <ClInclude Include="DrawableSprite.h">
       <Filter>Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>App\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCharacter.h">
+      <Filter>PlayerCharacter</Filter>
+    </ClInclude>
+    <ClInclude Include="presets.h">
+      <Filter>PlayerCharacter</Filter>
+    </ClInclude>
+    <ClInclude Include="Idle.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveForward.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="States.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveBackward.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Crouch.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="CrouchBlock.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Airborne.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="HitStun.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="LightAttack.h">
+      <Filter>PlayerCharacter\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

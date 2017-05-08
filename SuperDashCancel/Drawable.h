@@ -7,6 +7,7 @@
 #include <GLFW/glfw3.h>
 #include "glm/glm.hpp"
 #include "glm/ext.hpp"
+#include "presets.h"
 #include <iostream>
 
 
@@ -15,6 +16,8 @@ class Drawable
 {
 protected:
 	glm::mat4 projection = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f);
+
+public:
 	glm::vec2 pos;//position and scale are in pixel space
 	glm::vec2 scale;
 	glm::vec3 col;
