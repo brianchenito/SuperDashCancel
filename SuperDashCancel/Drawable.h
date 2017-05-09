@@ -14,10 +14,10 @@
 
 class Drawable
 {
-protected:
-	glm::mat4 projection = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f);
+	
 
 public:
+	static glm::mat4 projection;
 	glm::vec2 pos;//position and scale are in pixel space
 	glm::vec2 scale;
 	glm::vec3 col;
@@ -39,5 +39,4 @@ public:
 	virtual void Draw()=0;
 
 };
-
 #endif // !SDC_DRAWABLE_H

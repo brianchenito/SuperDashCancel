@@ -44,7 +44,7 @@ InputKeyboard::~InputKeyboard()
 
 void InputKeyboard::FixedStep()
 {
-
+	inputThisFrame = false;
 	for (int i = 0; i < 8; i++) 
 	{
 		pressed[i] = false;
@@ -53,7 +53,7 @@ void InputKeyboard::FixedStep()
 			pressed[i] = !held[i];
 			
 			held[i] =true;
-			
+			inputThisFrame = true;
 			//std::cout << "PRESSED " << keybinds[i] << "\n";
 		}
 		else held[i] = false;

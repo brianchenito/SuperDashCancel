@@ -26,6 +26,7 @@ void InputJoyStick::FixedStep()
 	{
 		pressed[i] = false;
 	}
+	inputThisFrame = false;
 	if (glfwJoystickPresent(FlagID) == GLFW_TRUE) 
 	{
 		// do stuff for directionals
@@ -37,31 +38,35 @@ void InputJoyStick::FixedStep()
 			/* if your stick doesnt have at least 2 axes
 			idk what to say, why are you playing this on
 			like a steering wheel dude*/
-			if (axes[0] < -0.5f)
+			if (axes[0] < -0.35f)
 			{
 				pressed[Input_Left] = !held[Input_Left];
 				held[Input_Left] = true;
+				inputThisFrame = true;
 			}
 			else held[Input_Left] = false;
 
-			if (axes[0] > 0.5f)
+			if (axes[0] > 0.35f)
 			{
 				pressed[Input_Right] = !held[Input_Right];
 				held[Input_Right] = true;
+				inputThisFrame = true;
 			}
 			else held[Input_Right] = false;
 
-			if (axes[1] < -0.5f)
+			if (axes[1] < -0.35f)
 			{
 				pressed[Input_Down] = !held[Input_Down];
 				held[Input_Down] = true;
+				inputThisFrame = true;
 			}
 			else held[Input_Down] = false;
 
-			if (axes[1] > 0.5f)
+			if (axes[1] > 0.35f)
 			{
 				pressed[Input_Up] = !held[Input_Up];
 				held[Input_Up] = true;
+				inputThisFrame = true;
 			}
 			else held[Input_Up] = false;
 
@@ -81,12 +86,14 @@ void InputJoyStick::FixedStep()
 					pressed[Input_Light] = !held[Input_Light];
 					held[Input_Light] = true;
 					lightFlag = true;
+					inputThisFrame = true;
 				}
 				else if (i % 2 != 0 && !heavyFlag) 
 				{
 					pressed[Input_Heavy] = !held[Input_Heavy];
 					held[Input_Heavy] = true;
 					heavyFlag = true;
+					inputThisFrame = true;
 				}
 			}
 		}

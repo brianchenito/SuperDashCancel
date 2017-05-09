@@ -9,15 +9,12 @@ App::App()
 	GLFWInitialize();
 	
 	GLEWInitialize();
-	glfwWindowHint(GLFW_SAMPLES, 4);
-	glEnable(GL_MULTISAMPLE);
+
 	fontengine.init();
 	std::cout << "All OpenGL Libraries Initialized\n\n";
 	InputManager::Init(window);
 
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	ActiveScene = 0;
 }
 
@@ -49,9 +46,17 @@ void App::Step()
 void App::GLFWInitialize()
 {/* Initialize the library */
 	if (!glfwInit()) std::runtime_error("GLFW Library failed to initialize, we broke something");
+	glfwWindowHint(GLFW_SAMPLES, 4);
+	glEnable(GL_MULTISAMPLE);
+	glDisable(GL_CULL_FACE);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_BLEND);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(1280, 720, "FITEBOYS WE OUT HERE PLAYMIDAIRDOTCOM", NULL, NULL);
+	window = glfwCreateWindow(1280, 720, "DASH TILL YOU'RE DEAD", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();

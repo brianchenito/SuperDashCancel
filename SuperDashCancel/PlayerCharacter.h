@@ -1,13 +1,17 @@
 #pragma once
 #include "DrawableSprite.h"
 #include "InputManager.h"
+#include "DrawableSpriteSheet.h"
 #include "Input.h"
 #include <map>
-
+#include <deque>
+#include <stdlib.h> 
+// states are arranged in order of increasing priority
 enum PlayerStates {
 	IDLE, MOVE_FORWARD, MOVE_BACKWARD, CROUCH, CROUCH_BLOCK, AIRBORNE, HIT_STUN,
-	LIGHT_DASH, LIGHT_ATTACK, LIGHT_CROUCH_ATTACK, LIGHT_SLIDE,
-	HEAVY_DASH, HEAVY_ATTACK, HEAVY_CROUCH_ATTACK, HEAVY_SLIDE
+	LIGHT_DASH, LIGHT_ATTACK, LIGHT_SLIDE, LIGHT_CROUCH_ATTACK, 
+	HEAVY_DASH, HEAVY_ATTACK, HEAVY_SLIDE, HEAVY_CROUCH_ATTACK,
+	BACK_DASH, FORWARD_DASH, FIREBALL, UPPERCUT
 };
 
 class PlayerCharacter;
@@ -34,11 +38,21 @@ public:
 
 class PlayerCharacter : public DrawableSprite
 {
-
+private:
+	bool scalechange;
+	bool skewchange;
+	std::deque<Input> inputbuffer;
+	
+	int inputtimer;
+	int statetimer;
+	
 public:
+	DrawableSpriteSheet lPunch;
+	std::deque<PlayerStates> statebuffer;
 	int health;
 	int hitstop;
 	bool isPlayer1; 
+	float skew;
 	glm::vec2 momentum;
 	PlayerCharacter* enemy;
 	PlayerState* activeState;
@@ -57,4 +71,7 @@ public:
 	void Move(glm::vec2 delta);
 	void PhysicsMove();
 	bool isEnemyLeft();
+	void EnqueueStates();
+	void SmoothScale(glm::vec2 newscale, float weight);
+	void SmoothSkew(float newskew, float weight);
 };

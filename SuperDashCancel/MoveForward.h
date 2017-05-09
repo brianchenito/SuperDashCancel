@@ -5,7 +5,6 @@ class MoveForward :
 	public PlayerState
 {
 public:
-	Input direction;
 
 	MoveForward(PlayerCharacter* p, PlayerStates pstate);
 	~MoveForward(); 

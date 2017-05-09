@@ -12,7 +12,6 @@ HitStun::~HitStun()
 }
 
 void HitStun::Enter() {
-	std::cout << "HitStun->Enter()" << std::endl;
 	player->momentum.y += knockback.y;
 	if (player->isEnemyLeft())
 		player->momentum.x += knockback.x;
@@ -26,5 +25,4 @@ void HitStun::FixedUpdate() {
 }
 
 void HitStun::Exit() {
-	std::cout << "HitStun->Exit()" << std::endl;
 }

@@ -4,9 +4,6 @@ class Crouch :
 	public PlayerState
 {
 public:
-	Input forward;
-	Input back;
-
 	Crouch(PlayerCharacter* p, PlayerStates pstate);
 	~Crouch();
 	void Enter();

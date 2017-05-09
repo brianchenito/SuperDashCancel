@@ -13,27 +13,25 @@ Crouch::~Crouch()
 
 void Crouch::Enter()
 {
-	player->scale.y = PLAYER_SCALE.y / 1.5;
 }
 
 void Crouch::FixedUpdate()
 {
-	if (player->isEnemyLeft()) {
-		forward = Input_Left;
-		back = Input_Right;
+	player->SmoothScale(glm::vec2(PLAYER_SCALE.x, PLAYER_SCALE.y / 1.25f), 0.7f);
+	if (player->statebuffer.empty()) player->ChangeState(IDLE);
+	else if (player->statebuffer.front() == CROUCH)
+	{
+		player->statebuffer.pop_front();
 	}
-	else {
-		forward = Input_Right;
-		back = Input_Left;
+	else
+	{
+		player->ChangeState(player->statebuffer.front());
+		player->statebuffer.clear();
 	}
 
-	if (!InputManager::Held(Input_Down, player->isPlayer1))
-		player->ChangeState(IDLE);
-	else if (InputManager::Held(back, player->isPlayer1))
-		player->ChangeState(CROUCH_BLOCK);
+
 }
 
 void Crouch::Exit()
 {
-	player->scale.y = PLAYER_SCALE.y;
 }

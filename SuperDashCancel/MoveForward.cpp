@@ -12,33 +12,28 @@ MoveForward::~MoveForward()
 
 void MoveForward::Enter()
 {
-	std::cout << "MoveForward->Enter()" << std::endl;
 }
 
 void MoveForward::FixedUpdate()
 {
+	player->Move(MOVE_SPEED);
+	if (player->isEnemyLeft())player->SmoothSkew(20.0f, 0.7f);
+	else player->SmoothSkew(-20.0f, 0.7f);
 
-	if (player->isEnemyLeft())
-		direction = Input_Left;
-	else
-		direction = Input_Right;
+	if (player->statebuffer.empty()) player->ChangeState(IDLE);
+	else if (player->statebuffer.front() == MOVE_FORWARD)
+	{
+		player->statebuffer.pop_front();
 
-
-	if (InputManager::Pressed(Input_Up, player->isPlayer1)) {
-		if (direction == Input_Left)
-			player->momentum.x = -MOVE_SPEED.x;
-		else 
-			player->momentum.x = MOVE_SPEED.x;
-		player->ChangeState(AIRBORNE);
 	}
-	else if (!InputManager::Held(direction, player->isPlayer1))
-		player->ChangeState(IDLE);
 	else
-		player->Move(MOVE_SPEED);
+	{
+		player->ChangeState(player->statebuffer.front());
+		player->statebuffer.clear();
+	}
 
 }
 
 void MoveForward::Exit()
 {
-	std::cout << "MoveForward->Exit()" << std::endl;
 }

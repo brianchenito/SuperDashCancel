@@ -141,6 +141,7 @@
     <ClCompile Include="CrouchBlock.cpp" />
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="DrawableSprite.cpp" />
+    <ClCompile Include="DrawableSpriteSheet.cpp" />
     <ClCompile Include="DrawableText.cpp" />
     <ClCompile Include="FontEngine.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="CrouchBlock.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="DrawableSprite.h" />
+    <ClInclude Include="DrawableSpriteSheet.h" />
     <ClInclude Include="DrawableText.h" />
     <ClInclude Include="FontEngine.h" />
     <ClInclude Include="GameScene.h" />

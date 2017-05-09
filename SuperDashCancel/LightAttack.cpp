@@ -13,18 +13,18 @@ LightAttack::~LightAttack()
 
 void LightAttack::Enter()
 {
-	std::cout << "LightAttack->Enter()" << std::endl;
 
-	startup = 3;
-	active = 5;
-	endlag = 4;
+	startup = 5;
+	active = 4;
+	endlag = 13;
 	hitstop = 10;
-	hitstun = 6;
-	damage = 50;
-	knockback = glm::vec2(20, 5);
-	hitbox = glm::vec4(40, 0, 80, 80);
+	hitstun = 18;
+	damage = 15;
+	knockback = glm::vec2(10, 0);
+	hitbox = glm::vec4(60, 0, 80, 80);
 
 	Attack::Enter();
+	player->lPunch.Reset();
 }
 
 void LightAttack::FixedUpdate()
@@ -34,7 +34,6 @@ void LightAttack::FixedUpdate()
 
 void LightAttack::Exit()
 {
-	std::cout << "LightAttack->Exit()" << std::endl;
 	Attack::Exit();
 }
 

@@ -3,6 +3,7 @@
 class Airborne :
 	public PlayerState
 {
+	bool doubleJump;
 public:
 	Airborne(PlayerCharacter* p, PlayerStates pstate);
 	~Airborne();

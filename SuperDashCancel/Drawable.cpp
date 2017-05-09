@@ -1,5 +1,6 @@
 #include "Drawable.h"
 
+glm::mat4 Drawable::projection = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f);
 
 
 void Drawable::setPos(float x, float y)

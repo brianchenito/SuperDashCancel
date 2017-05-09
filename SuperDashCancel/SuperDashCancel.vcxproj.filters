@@ -108,6 +108,9 @@
     <ClCompile Include="LightAttack.cpp">
       <Filter>PlayerCharacter\States</Filter>
     </ClCompile>
+    <ClCompile Include="DrawableSpriteSheet.cpp">
+      <Filter>Drawable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drawable.h">
@@ -265,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="LightAttack.h">
       <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableSpriteSheet.h">
+      <Filter>Drawable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

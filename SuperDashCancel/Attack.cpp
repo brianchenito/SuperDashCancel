@@ -11,9 +11,7 @@ Attack::~Attack()
 {
 }
 
-void Attack::Enter() {
-	std::cout << "Attack->Enter()" << std::endl;
-	
+void Attack::Enter() {	
 	if (player->isEnemyLeft())
 		hitbox.x = -hitbox.x;
 }

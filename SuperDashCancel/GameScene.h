@@ -5,6 +5,7 @@
 #include "PlayerCharacter.h"
 #include "States.h"
 #include "presets.h"
+#include "DrawableSpriteSheet.h"
 #include <stdlib.h>
 class GameScene :
 	public App::Scene
@@ -15,6 +16,10 @@ class GameScene :
 
 	DrawableSprite background;
 	DrawableSprite floor;
+	DrawableSprite decorativeLine1;
+	DrawableSprite decorativeLine2;
+
+	DrawableSpriteSheet testDust;
 
 	PlayerCharacter p1;
 	PlayerCharacter p2;
@@ -26,6 +31,7 @@ class GameScene :
 
 	DrawableText winText;
 	DrawableText gameTimeText;
+		
 
 public:
 	

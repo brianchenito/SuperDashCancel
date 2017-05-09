@@ -13,29 +13,36 @@ CrouchBlock::~CrouchBlock()
 
 void CrouchBlock::Enter()
 {
-	player->scale.y = PLAYER_SCALE.y / 1.5;
-	player->col = player->col - glm::vec3(0.05f, 0.05f, 0.05f);
 }
 
 void CrouchBlock::FixedUpdate()
 {
-	if (player->isEnemyLeft()) {
-		forward = Input_Left;
-		back = Input_Right;
+	player->SmoothScale(glm::vec2(PLAYER_SCALE.x, PLAYER_SCALE.y / 1.25f), 0.7f);
+	if (player->isEnemyLeft())player->SmoothSkew(15.0f, 0.7f);
+	else player->SmoothSkew(-15.0f, 0.7f);
+
+	if (player->statebuffer.empty()) player->ChangeState(IDLE);
+	else if (player->statebuffer.front() == CROUCH_BLOCK)
+	{
+		player->statebuffer.pop_front();
+
+
 	}
-	else {
-		forward = Input_Right;
-		back = Input_Left;
+	else
+	{
+		player->ChangeState(player->statebuffer.front());
+		player->statebuffer.clear();
 	}
 
-	if (!InputManager::Held(Input_Down, player->isPlayer1))
-		player->ChangeState(IDLE);
-	else if (!InputManager::Held(back, player->isPlayer1))
-		player->ChangeState(CROUCH);
+
+
+
+
+
+
+
 }
 
 void CrouchBlock::Exit()
 {
-	player->scale.y = PLAYER_SCALE.y;
-	player->col = player->col + glm::vec3(0.05f, 0.05f, 0.05f);
 }
