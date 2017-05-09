@@ -135,6 +135,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AppMain.cpp" />
     <ClCompile Include="Attack.cpp" />
+    <ClCompile Include="BackDash.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonLaunchMP.cpp" />
     <ClCompile Include="ButtonLaunchSP.cpp" />
@@ -145,7 +146,9 @@
     <ClCompile Include="DrawableSpriteSheet.cpp" />
     <ClCompile Include="DrawableText.cpp" />
     <ClCompile Include="FontEngine.cpp" />
+    <ClCompile Include="ForwardDash.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="HeavyAttack.cpp" />
     <ClCompile Include="HitStun.cpp" />
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="InputAI.cpp" />
@@ -160,12 +163,15 @@
     <ClCompile Include="MoveForward.cpp" />
     <ClCompile Include="MPReadyUpScene.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
+    <ClCompile Include="SlideHeavy.cpp" />
+    <ClCompile Include="SlideLight.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airborne.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="Attack.h" />
+    <ClInclude Include="BackDash.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonLaunchMP.h" />
     <ClInclude Include="ButtonLaunchSP.h" />
@@ -176,6 +182,7 @@
     <ClInclude Include="DrawableSpriteSheet.h" />
     <ClInclude Include="DrawableText.h" />
     <ClInclude Include="FontEngine.h" />
+    <ClInclude Include="ForwardDash.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="glm\common.hpp" />
     <ClInclude Include="glm\exponential.hpp" />
@@ -200,6 +207,7 @@
     <ClInclude Include="glm\vec3.hpp" />
     <ClInclude Include="glm\vec4.hpp" />
     <ClInclude Include="glm\vector_relational.hpp" />
+    <ClInclude Include="HeavyAttack.h" />
     <ClInclude Include="HitStun.h" />
     <ClInclude Include="Idle.h" />
     <ClInclude Include="Input.h" />
@@ -217,6 +225,8 @@
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="presets.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="SlideHeavy.h" />
+    <ClInclude Include="SlideLight.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>

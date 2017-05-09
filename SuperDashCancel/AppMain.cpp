@@ -12,7 +12,7 @@ int main()
 	MainMenuScene m(&Game, "MainMenuScreen");
 	MPReadyUpScene mp(&Game, "MPReadyUpScreen");
 	GameScene g(&Game, "GameScreen");
-	Game.SwitchScene("TitleScreen");
+	Game.SwitchScene("GameScreen");
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(Game.window))
 	{

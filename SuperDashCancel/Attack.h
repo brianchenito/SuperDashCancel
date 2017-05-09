@@ -1,8 +1,7 @@
 #pragma once
 #include "PlayerCharacter.h"
 #include "HitStun.h"
-class Attack :
-	public PlayerState
+class Attack :public PlayerState
 {
 protected:
 	// configuration data
@@ -27,6 +26,6 @@ public:
 	void FixedUpdate();
 	void Exit();
 	bool DetectHit();
-	void EndLag();
+	virtual void EndLag()=0;
 };
 

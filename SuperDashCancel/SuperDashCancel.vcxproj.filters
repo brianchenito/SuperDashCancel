@@ -117,7 +117,20 @@
     <ClCompile Include="LightDash.cpp">
       <Filter>PlayerCharacter\States</Filter>
     </ClCompile>
-    <ClCompile Include="ButtonLaunchSP.cpp" />
+    <ClCompile Include="ButtonLaunchSP.cpp">
+      <Filter>Drawable\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="BackDash.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ForwardDash.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="SlideLight.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="HeavyAttack.cpp" />
+    <ClCompile Include="SlideHeavy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drawable.h">
@@ -285,6 +298,19 @@
     <ClInclude Include="LightDash.h">
       <Filter>PlayerCharacter\States</Filter>
     </ClInclude>
-    <ClInclude Include="ButtonLaunchSP.h" />
+    <ClInclude Include="ButtonLaunchSP.h">
+      <Filter>Drawable\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="BackDash.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ForwardDash.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="SlideLight.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="HeavyAttack.h" />
+    <ClInclude Include="SlideHeavy.h" />
   </ItemGroup>
 </Project>

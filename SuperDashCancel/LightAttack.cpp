@@ -24,6 +24,7 @@ void LightAttack::Enter()
 	knockback = glm::vec2(5, 0);
 	hitbox = glm::vec4(60, 0, 80, 80);
 	airborne = (player->pos.y > FLOOR_HEIGHT);
+	low = false;
 	Attack::Enter();
 	player->lPunch.Reset();
 	if (player->isEnemyLeft())player->SmoothSkew(20.0f, 0.6f);
@@ -43,5 +44,17 @@ void LightAttack::Exit()
 
 void LightAttack::EndLag()
 {
-	Attack::EndLag();
+	if (cancel && !player->statebuffer.empty())
+	{
+		while (!player->statebuffer.empty())
+		{
+			if (player->statebuffer.front() > currentState)
+			{
+				player->ChangeState(player->statebuffer.front());
+				player->statebuffer.clear();
+				return;
+			}
+			player->statebuffer.pop_front();
+		}
+	}
 }

@@ -25,6 +25,9 @@ void Attack::FixedUpdate() {
 			player->hitstop = hitstop;
 			player->enemy->hitstop = hitstop;
 			cancel = true;
+			player->momentum /= 4;
+			endlag += active;
+			active = 0;
 			// check for blocks
 			if (
 				(airborne&&player->enemy->activeState->currentState == MOVE_BACKWARD)
@@ -34,8 +37,9 @@ void Attack::FixedUpdate() {
 				) 
 			{
 				std::cout << "Blocked Attack";
+				
 				player->enemy->blockstun = blockstun;
-				player->enemy->momentum = glm::vec2(player->isEnemyLeft()?-knockback.x:knockback.x,knockback.y);
+				player->enemy->momentum = glm::vec2(player->isEnemyLeft()?-knockback.x/3.0f:knockback.x/3.0f,knockback.y);
 			}
 			else 
 			{// hitconfirm
@@ -44,10 +48,6 @@ void Attack::FixedUpdate() {
 				((HitStun*)(player->enemy->stateMap[HIT_STUN]))->knockback = knockback;
 				player->enemy->ChangeState(HIT_STUN);
 			}
-
-			
-
-			
 		}
 		return;
 	}
@@ -76,21 +76,4 @@ bool Attack::DetectHit() {
 		return true;
 	else
 		return false;
-}
-
-void Attack::EndLag()
-{
-	if (cancel && !player->statebuffer.empty())
-	{
-		while (!player->statebuffer.empty())
-		{
-			if (player->statebuffer.front() > currentState)
-			{
-				player->ChangeState(player->statebuffer.front());
-				player->statebuffer.clear();
-				return;
-			}
-			player->statebuffer.pop_front();
-		}
-	}
 }

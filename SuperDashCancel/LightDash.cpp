@@ -21,9 +21,10 @@ void LightDash::Enter()
 	hitstun = 32;
 	blockstun = 24;
 	damage = 40;
-	knockback = glm::vec2(10, 0);
+	knockback = glm::vec2(40, 0);
 	hitbox = glm::vec4(0, -10, 100, 100);
 	airborne = (player->pos.y > FLOOR_HEIGHT);
+	low = false;
 	if (player->isEnemyLeft())direction = -1;
 	else direction = 1;
 	player->momentum = (glm::vec2( direction, 0));
@@ -50,6 +51,18 @@ void LightDash::Exit()
 
 void LightDash::EndLag()
 {
-	Attack::EndLag();
+	if (cancel && !player->statebuffer.empty())
+	{
+		while (!player->statebuffer.empty())
+		{
+			if (player->statebuffer.front() > currentState)
+			{
+				player->ChangeState(player->statebuffer.front());
+				player->statebuffer.clear();
+				return;
+			}
+			player->statebuffer.pop_front();
+		}
+	}
 
 }

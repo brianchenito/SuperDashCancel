@@ -61,7 +61,7 @@ void GameScene::Init() {
 	p1.ChangeState(IDLE);
 	p2.ChangeState(IDLE);
 	drawWinText = false;
-	warmup = 270;
+	warmup = 240;
 	gameTime = 3600;
 	winTimeOut = 300;
 	p1.setPos(glm::vec2(520, 160));
@@ -209,5 +209,13 @@ void GameScene::PopulateStateMap(PlayerCharacter* p) {
 	p->stateMap[AIRBORNE] = new Airborne(p, AIRBORNE);
 	p->stateMap[HIT_STUN] = new HitStun(p, HIT_STUN);
 	p->stateMap[LIGHT_ATTACK] = new LightAttack(p, LIGHT_ATTACK);
+	p->stateMap[HEAVY_ATTACK] = new HeavyAttack(p, HEAVY_ATTACK);
+
 	p->stateMap[LIGHT_DASH] = new LightDash(p, LIGHT_DASH);
+	p->stateMap[HEAVY_DASH] = new LightDash(p, HEAVY_DASH);
+	p->stateMap[LIGHT_SLIDE] = new SlideLight(p, LIGHT_SLIDE);
+	p->stateMap[HEAVY_SLIDE] = new SlideHeavy(p, HEAVY_SLIDE);
+	p->stateMap[BACK_DASH] = new BackDash(p, BACK_DASH);
+	p->stateMap[FORWARD_DASH] = new ForwardDash(p, FORWARD_DASH);
+
 }

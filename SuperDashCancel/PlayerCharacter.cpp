@@ -127,7 +127,7 @@ void PlayerCharacter::ChangeState(PlayerStates pstate) {
 	if (stateMap.find(pstate) != stateMap.end()) {
 		if (pos.y > FLOOR_HEIGHT) // entry restricts for grounded only states
 		{
-			if (pstate == AIRBORNE||pstate==HEAVY_SLIDE||pstate==LIGHT_SLIDE)return;
+			if (pstate == CROUCH_BLOCK || pstate == CROUCH||pstate == AIRBORNE||pstate==HEAVY_SLIDE||pstate==LIGHT_SLIDE)return;
 		}
 		if (activeState) activeState->Exit();
 		activeState = stateMap[pstate];
@@ -181,7 +181,7 @@ void PlayerCharacter::PhysicsMove() {
 
 	//Friction
 	if (momentum.x < 0.01f || momentum.x > -0.01f)
-		momentum.x /= 2;
+		momentum.x /= 1.25f;
 	else
 		momentum.x = 0;
 
@@ -235,22 +235,63 @@ void PlayerCharacter::EnqueueStates()
 	if (statetimer == 0)statebuffer.clear();
 	else statetimer--;
 	if (statebuffer.size() > 4) statebuffer.erase(statebuffer.begin() + 4, statebuffer.end());
-	// push in input buffer
-	for (int i = 0; i < Input_SIZE; i++) 
+	int vert = 0; int horz = 0;
+	if (InputManager::Pressed(Input_Up, isPlayer1)|| InputManager::Pressed(Input_Down, isPlayer1)|| InputManager::Pressed(Input_Left, isPlayer1)|| InputManager::Pressed(Input_Right, isPlayer1))
 	{
-		if (InputManager::Pressed((Input)i, isPlayer1)) 
-		{ 
-			inputtimer = 14;
-			statetimer = 14;
-			inputbuffer.push_front((Input)i); 
-		}
+		inputtimer = 14;
+		statetimer = 14;
+		if (InputManager::Held(Input_Up, isPlayer1))vert++;
+		if (InputManager::Held(Input_Down, isPlayer1))vert--;
+
+		if (InputManager::Held(Input_Right, isPlayer1))horz++;
+		if (InputManager::Held(Input_Left, isPlayer1))horz--;
 	}
+	if (vert == 0) 
+	{
+		if (horz == 1)inputbuffer.push_front(Input_Right);
+		if (horz == -1)inputbuffer.push_front(Input_Left);
+	}
+	if (horz == 0)
+	{
+		if (vert == 1)inputbuffer.push_front(Input_Up);
+		if (vert == -1)inputbuffer.push_front(Input_Down);
+	}
+	if (horz == 1 && vert == 1) inputbuffer.push_front(Input_UpR);
+	if (horz == -1 && vert == 1) inputbuffer.push_front(Input_UpL);
+	if (horz == 1 && vert == -1) inputbuffer.push_front(Input_DownR);
+	if (horz == -1 && vert == -1) inputbuffer.push_front(Input_UpL);
+
+	if (InputManager::Pressed(Input_Light, isPlayer1))
+	{
+		inputtimer = 14;
+		statetimer = 14;
+		inputbuffer.push_front(Input_Light);
+	}
+	if (InputManager::Pressed(Input_Heavy, isPlayer1))
+	{
+		inputtimer = 14;
+		statetimer = 14;
+		inputbuffer.push_front(Input_Heavy);
+	}
+
 	// long ass conditional checks to enqueue state conditions
+	if (inputbuffer.size() >= 2 && (inputbuffer[0] == Input_Left&&inputbuffer[1] == Input_Left)) 
+	{
+		if (!isEnemyLeft())statebuffer.push_front(BACK_DASH);
+		else statebuffer.push_front(FORWARD_DASH);
+		inputbuffer.clear();
+	}
+	if (inputbuffer.size() >= 2 && (inputbuffer[0] == Input_Right&&inputbuffer[1] == Input_Right))
+	{
+		if (isEnemyLeft())statebuffer.push_front(BACK_DASH);
+		else statebuffer.push_front(FORWARD_DASH);
+		inputbuffer.clear();
+	}
 
 	//handle movement and etc.
 	if (statebuffer.empty())
 	{
-		if (InputManager::Pressed(Input_Up, isPlayer1))statebuffer.push_front(AIRBORNE);
+		if (InputManager::Held(Input_Up, isPlayer1))statebuffer.push_front(AIRBORNE);
 		if (InputManager::Held(Input_Down, isPlayer1))
 		{
 			if ((isEnemyLeft() && InputManager::Held(Input_Right, isPlayer1)) || (!isEnemyLeft() && InputManager::Held(Input_Left, isPlayer1))) 
