@@ -13,8 +13,8 @@ Airborne::~Airborne()
 
 void Airborne::Enter()
 {
-	doubleJump = true;
 	player->momentum.y = JUMP_HEIGHT;
+	doubleJump = true;
 }
 
 void Airborne::FixedUpdate()
@@ -32,6 +32,7 @@ void Airborne::FixedUpdate()
 			) 
 		{
 			player->ChangeState(player->statebuffer.front());
+			player->statebuffer.clear();
 		}
 
 

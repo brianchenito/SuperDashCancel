@@ -5,29 +5,39 @@
 GameScene::GameScene(App *a, std::string label):Scene(a, label)
 {
 	drawWinText = false;
-	gameTime = 600;
+	gameTime = 3600;
 	winTimeOut = 600;
 
-	background = DrawableSprite(glm::vec2(0, 0), glm::vec2(1280, 720), glm::vec3(0.86f, 0.85f, 0.8f));
-	background.loadTexture("../SuperDashCancel/textures/texture2.png", NOALPHA);
+	testDust = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(180, 79), glm::vec3(1, 1, 1), 4, 3);
+	testDust.loadTexture("../SuperDashCancel/textures/Sheet1.png", ALPHA);
+	testDust.leftOrigin = true;
 
-	floor = DrawableSprite(glm::vec2(0, 0), glm::vec2(1280, 160), glm::vec3(0.6f, 0.6f, 0.55f));
-	floor.loadTexture("../SuperDashCancel/textures/texture2.png", NOALPHA);
+	background = DrawableSprite(glm::vec2(0, 0), glm::vec2(1280, 720), glm::vec3(0.8f,0.8f,0.8f));
+	background.loadTexture("../SuperDashCancel/textures/texture6.png", NOALPHA);
 
-	p1hp = DrawableSprite(glm::vec2(290, 690), glm::vec2(300, 20), PLAYER_ONE_COLOR);
-	p1hp.loadTexture("../SuperDashCancel/textures/texture4.png", ALPHA);
+	floor = DrawableSprite(glm::vec2(0, 0), glm::vec2(1280, 160), glm::vec3(.13f,.17f,.15f));
+	floor.loadTexture("../SuperDashCancel/textures/texture5.png", ALPHA);
 
-	p1hp_back = DrawableSprite(glm::vec2(288, 688), glm::vec2(304, 24), glm::vec3(0, 0, 0));
-	p1hp_back.loadTexture("../SuperDashCancel/textures/texture4.png", ALPHA);
+	decorativeLine1 = DrawableSprite(glm::vec2(500, 670), glm::vec2(280, 2), glm::vec3(0.3f, 0.3f, 0.3f));
+	decorativeLine1.loadTexture("../SuperDashCancel/textures/texture5.png", ALPHA);
 
-	p2hp = DrawableSprite(glm::vec2(690, 690), glm::vec2(300, 20), PLAYER_TWO_COLOR);
-	p2hp.loadTexture("../SuperDashCancel/textures/texture4.png", ALPHA);
+	decorativeLine2 = DrawableSprite(glm::vec2(550, 665), glm::vec2(180, 2), glm::vec3(0.3f, 0.3f, 0.3f));
+	decorativeLine2.loadTexture("../SuperDashCancel/textures/texture5.png", ALPHA);
 
-	p2hp_back = DrawableSprite(glm::vec2(688, 688), glm::vec2(304, 24), glm::vec3(0,0,0));
-	p2hp_back.loadTexture("../SuperDashCancel/textures/texture4.png", ALPHA);
+	p1hp = DrawableSprite(glm::vec2(40, 690), glm::vec2(550, 20), PLAYER_ONE_COLOR);
+	p1hp.loadTexture("../SuperDashCancel/textures/texture5.png", ALPHA);
+
+	p1hp_back = DrawableSprite(glm::vec2(36, 686), glm::vec2(550, 20), glm::vec3(0.3f, 0.3f, 0.3f));
+	p1hp_back.loadTexture("../SuperDashCancel/textures/texture5.png", ALPHA);
+
+	p2hp = DrawableSprite(glm::vec2(690, 690), glm::vec2(550, 20), PLAYER_TWO_COLOR);
+	p2hp.loadTexture("../SuperDashCancel/textures/texture5.png", ALPHA);
+
+	p2hp_back = DrawableSprite(glm::vec2(694, 686), glm::vec2(550, 20), glm::vec3(0.3f, 0.3f, 0.3f));
+	p2hp_back.loadTexture("../SuperDashCancel/textures/texture5.png", ALPHA);
 
 	winText = DrawableText(&app->fontengine, "", glm::vec2(290, 380), 1.0f, glm::vec3(0.3f, 0.3f, 0.3f));
-	gameTimeText = DrawableText(&app->fontengine, std::to_string(gameTime / 60), glm::vec2(630, 680), 0.4f, glm::vec3(0.3f, 0.3f, 0.3f));
+	gameTimeText = DrawableText(&app->fontengine, std::to_string(gameTime / 60), glm::vec2(620, 680), 0.4f, glm::vec3(0.3f, 0.3f, 0.3f));
 
 	p1 = PlayerCharacter(true);
 	p2 = PlayerCharacter(false);
@@ -45,11 +55,19 @@ GameScene::GameScene(App *a, std::string label):Scene(a, label)
 
 GameScene::~GameScene()
 {
+
 }
 
 void GameScene::Init() {
 	p1.ChangeState(IDLE);
 	p2.ChangeState(IDLE);
+	drawWinText = false;
+	gameTime = 3600;
+	winTimeOut = 600;
+	p1.setPos(glm::vec2(100, 160));
+	p2.setPos(glm::vec2(1180, 160));
+	p1.health = 1000;
+	p2.health = 1000;
 }
 
 void GameScene::Terminate() {
@@ -59,14 +77,18 @@ void GameScene::Terminate() {
 void GameScene::Draw() {
 	background.Draw();
 	floor.Draw();
+
 	p1.Draw();
 	p2.Draw();
 	p1hp_back.Draw();
 	p2hp_back.Draw();
 	p1hp.Draw();
 	p2hp.Draw();
+	decorativeLine1.Draw();
+	decorativeLine2.Draw();
 	gameTimeText.Draw();
 	if (drawWinText) winText.Draw();
+	testDust.Draw();
 }
 
 void GameScene::OnUpdate() {
@@ -109,8 +131,8 @@ void GameScene::OnFixedUpdate() {
 
 	p1.FixedUpdate();
 	p2.FixedUpdate();
-	p1hp.scale.x = p1.health / 1000.0f * 300;
-	p2hp.scale.x = p2.health / 1000.0f * 300;
+	p1hp.scale.x = p1.health / 1000.0f * 550;
+	p2hp.scale.x = p2.health / 1000.0f * 550;
 
 }
 
