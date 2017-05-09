@@ -48,6 +48,7 @@ private:
 	
 public:
 	DrawableSpriteSheet lPunch;
+	DrawableSpriteSheet dashDust;
 	std::deque<PlayerStates> statebuffer;
 	int health;
 	int hitstop;

@@ -36,14 +36,13 @@ GameScene::GameScene(App *a, std::string label):Scene(a, label)
 	p2hp_back = DrawableSprite(glm::vec2(694, 686), glm::vec2(550, 20), glm::vec3(0.3f, 0.3f, 0.3f));
 	p2hp_back.loadTexture("../SuperDashCancel/textures/texture5.png", ALPHA);
 
-	winText = DrawableText(&app->fontengine, "", glm::vec2(290, 380), 1.0f, glm::vec3(0.3f, 0.3f, 0.3f));
-	gameTimeText = DrawableText(&app->fontengine, std::to_string(gameTime / 60), glm::vec2(620, 680), 0.4f, glm::vec3(0.3f, 0.3f, 0.3f));
+	winText = DrawableText(&app->fontengine, "", glm::vec2(520, 380), 1.0f, glm::vec3(0.3f, 0.3f, 0.3f));
+	gameTimeText = DrawableText(&app->fontengine, std::to_string(gameTime / 60), glm::vec2(625, 680), 0.4f, glm::vec3(0.3f, 0.3f, 0.3f));
 
 	p1 = PlayerCharacter(true);
 	p2 = PlayerCharacter(false);
 
-	p1.setPos(glm::vec2(100, 160));
-	p2.setPos(glm::vec2(1180, 160));
+
 
 	p1.enemy = &p2;
 	p2.enemy = &p1;
@@ -64,8 +63,8 @@ void GameScene::Init() {
 	drawWinText = false;
 	gameTime = 3600;
 	winTimeOut = 600;
-	p1.setPos(glm::vec2(100, 160));
-	p2.setPos(glm::vec2(1180, 160));
+	p1.setPos(glm::vec2(520, 160));
+	p2.setPos(glm::vec2(760, 160));
 	p1.health = 1000;
 	p2.health = 1000;
 }
@@ -80,6 +79,12 @@ void GameScene::Draw() {
 
 	p1.Draw();
 	p2.Draw();
+	if(p1.pos.y<=FLOOR_HEIGHT)p1.dashDust.Draw();
+	if (p2.pos.y <= FLOOR_HEIGHT)p2.dashDust.Draw();
+	p1.lPunch.Draw();
+	p2.lPunch.Draw();// draw spritesheets on top
+
+
 	p1hp_back.Draw();
 	p2hp_back.Draw();
 	p1hp.Draw();
@@ -99,6 +104,13 @@ void GameScene::OnFixedUpdate() {
 	if (gameTime > 0 && !drawWinText) {
 		gameTimeText.text = std::to_string(gameTime / 60);
 		gameTime--;
+
+		p1.FixedUpdate();
+		p2.FixedUpdate();
+		p1hp.scale.x = p1.health / 1000.0f * 550;
+		p1hp.pos.x = 40 + (1000 - p1.health)/1000.0f*550;
+		p2hp.scale.x = p2.health / 1000.0f * 550;
+
 	}
 	else {
 		if (winTimeOut > 0) {
@@ -109,10 +121,18 @@ void GameScene::OnFixedUpdate() {
 			return;
 		}
 		drawWinText = true;
-		if (p1.health < p2.health)
+		if (p1.health < p2.health) 
+		{
 			winText.text = "P2 WINS";
-		else if (p1.health > p2.health)
+			p1.scale.y = PLAYER_SCALE.y / 2;
+		}
+			
+		else if (p1.health > p2.health) 
+		{
 			winText.text = "P1 WINS";
+			p2.scale.y = PLAYER_SCALE.y / 2;
+		}
+			
 		else
 			winText.text = "DRAW";
 
@@ -120,19 +140,18 @@ void GameScene::OnFixedUpdate() {
 	
 	if (p1.health <= 0 && p1.activeState->currentState == IDLE) {
 		winText.text = "P2 WINS";
+		p1.scale.y = PLAYER_SCALE.y / 2;
 		drawWinText = true;
 		return;
 	}
 	if (p2.health <= 0 && p2.activeState->currentState == IDLE) {
 		winText.text = "P1 WINS";
+		p2.scale.y = PLAYER_SCALE.y / 2;
 		drawWinText = true;
 		return;
 	}
 
-	p1.FixedUpdate();
-	p2.FixedUpdate();
-	p1hp.scale.x = p1.health / 1000.0f * 550;
-	p2hp.scale.x = p2.health / 1000.0f * 550;
+
 
 }
 

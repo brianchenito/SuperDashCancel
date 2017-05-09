@@ -12,6 +12,7 @@ protected:
 	int hitstun;
 	int damage;
 	glm::vec2 knockback;
+	bool cancel;
 
 public:
 	glm::vec4 hitbox;
@@ -22,6 +23,6 @@ public:
 	void FixedUpdate();
 	void Exit();
 	bool DetectHit();
-	virtual void EndLag() = 0;
+	void EndLag();
 };
 

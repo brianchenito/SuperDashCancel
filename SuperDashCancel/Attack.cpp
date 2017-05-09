@@ -14,24 +14,28 @@ Attack::~Attack()
 void Attack::Enter() {	
 	if (player->isEnemyLeft())
 		hitbox.x = -hitbox.x;
+	cancel = false;
 }
 
 void Attack::FixedUpdate() {
 	if (startup > 0) { startup--; return; }
 	if (active > 0) { 
 		active--;
-		if (DetectHit()) {
+		if (!cancel&&DetectHit()) {
 			player->hitstop = hitstop;
 			player->enemy->hitstop = hitstop;
 			player->enemy->health -= damage;
 			((HitStun*)(player->enemy->stateMap[HIT_STUN]))->stunLength = hitstun;
 			((HitStun*)(player->enemy->stateMap[HIT_STUN]))->knockback = knockback;
 			player->enemy->ChangeState(HIT_STUN);
+			cancel = true;
 		}
+		return;
 	}
 	if (endlag > 0) {
 		endlag--;
 		EndLag();
+		return;
 	}
 	player->ChangeState(IDLE);
 }
@@ -53,4 +57,21 @@ bool Attack::DetectHit() {
 		return true;
 	else
 		return false;
+}
+
+void Attack::EndLag()
+{
+	if (cancel && !player->statebuffer.empty())
+	{
+		while (!player->statebuffer.empty())
+		{
+			if (player->statebuffer.front() > currentState)
+			{
+				player->ChangeState(player->statebuffer.front());
+				player->statebuffer.clear();
+				return;
+			}
+			player->statebuffer.pop_front();
+		}
+	}
 }

@@ -16,8 +16,11 @@ PlayerCharacter::PlayerCharacter(bool player1)
 	health = 1000;
 	skew = 0;
 
-	lPunch = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(64, 120), player1?glm::vec3(0.35f,0.873f,0.93f):glm::vec3(0.86f,0.83f,0.12f), 3, 2);
+	lPunch = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(64, 120), player1?glm::vec3(0.35f,0.873f,0.93f):glm::vec3(0.96f,0.53f,0.32f), 3, 2);
 	lPunch.loadTexture("../SuperDashCancel/textures/Sheet2.png", ALPHA);
+	dashDust= DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(180, 79), glm::vec3(1,1,1), 4, 3);
+	dashDust.loadTexture("../SuperDashCancel/textures/Sheet1.png", ALPHA);
+	enemy = 0;
 }
 
 void PlayerCharacter::Draw() {
@@ -57,16 +60,7 @@ void PlayerCharacter::Draw() {
 	// reset pos to middle
 	pos.x += PLAYER_SCALE.x / 2;
 
-	//position sprites
-
-		lPunch.leftOrigin = !isEnemyLeft();
-		lPunch.pos = pos;
-		lPunch.pos.y += 40;
-		if (isEnemyLeft())lPunch.pos.x -= 70;
-		else lPunch.pos.x += 70;
-		lPunch.Draw();
 	
-
 
 }
 
@@ -88,6 +82,18 @@ void PlayerCharacter::FixedUpdate() {
 		Drawable::projection = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f);
 	}
 
+	if (pos.y == FLOOR_HEIGHT&&enemy->pos.y == FLOOR_HEIGHT &&
+		(fabs(pos.x - enemy->pos.x) < PLAYER_SCALE.x)) 
+	{
+		if (isEnemyLeft()) 
+			pos.x += 5;
+		else 
+			pos.x -= 5;
+
+		
+	}
+
+
 	if (activeState) activeState->FixedUpdate();
 	PhysicsMove();
 	if (!scalechange) 
@@ -97,8 +103,24 @@ void PlayerCharacter::FixedUpdate() {
 	if(!skewchange)skew = 0.3f*skew;
 	scalechange = false;
 	skewchange = false;
+	
+	//position sprites
+
+	lPunch.leftOrigin = !isEnemyLeft();
+	lPunch.pos = pos;
+	lPunch.pos.y += 40;
+	if (isEnemyLeft())lPunch.pos.x -= 70;
+	else lPunch.pos.x += 70;
 	lPunch.FixedStep();
 
+	dashDust.leftOrigin = (momentum.x > 0);
+
+	dashDust.pos = pos;
+	dashDust.pos.y += 38;
+
+	if (momentum.x > 0)dashDust.pos.x -= 130;
+	else dashDust.pos.x += 130;
+	dashDust.FixedStep();
 }
 
 void PlayerCharacter::ChangeState(PlayerStates pstate) {
@@ -125,6 +147,23 @@ void PlayerCharacter::Move(glm::vec2 delta) {
 	else 
 		pos += delta;
 
+	if (pos.y == FLOOR_HEIGHT&&enemy->pos.y == FLOOR_HEIGHT&&
+		(fabs(pos.x-enemy->pos.x)<PLAYER_SCALE.x))
+	{
+		if(delta.x!=0)
+		{
+			if (isEnemyLeft()) 
+			{
+				enemy->pos.x-=delta.x / 2;
+				pos.x += delta.x / 2;
+			} 
+			else 
+			{
+				enemy->pos.x += delta.x / 2;
+				pos.x -= delta.x / 2;
+			}
+		}
+	}
 	
 	//Boundaries
 	if (pos.y < FLOOR_HEIGHT) pos.y = FLOOR_HEIGHT;
@@ -152,16 +191,36 @@ void PlayerCharacter::PhysicsMove() {
 			momentum.y = 0;
 	}
 
+	if (pos.y == FLOOR_HEIGHT&&enemy->pos.y == FLOOR_HEIGHT &&
+		(fabs(pos.x - enemy->pos.x)<PLAYER_SCALE.x))
+	{
+		if (momentum.x != 0)
+		{
+			if (isEnemyLeft())
+			{
+				enemy->pos.x -= momentum.x / 2;
+				pos.x += momentum.x / 2;
+			}
+			else
+			{
+				enemy->pos.x += momentum.x / 2;
+				pos.x -= momentum.x / 2;
+			}
+		}
+	}
+
+
 	//Boundaries
 	if (pos.y < FLOOR_HEIGHT) pos.y = FLOOR_HEIGHT;
 	if (pos.y > CEILING_HEIGHT) pos.y = CEILING_HEIGHT;
 	if (pos.x < WALL_LEFT) pos.x = WALL_LEFT;
 	if (pos.x > WALL_RIGHT) pos.x = WALL_RIGHT;
+	
 
 }
 
 bool PlayerCharacter::isEnemyLeft() {
-	return (enemy->GetPos().x - GetPos().x < 0);
+	return ((enemy!=0)&&enemy->GetPos().x - GetPos().x < 0);
 }
 
 void PlayerCharacter::EnqueueStates()
