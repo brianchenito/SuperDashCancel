@@ -58,6 +58,7 @@ GameScene::~GameScene()
 }
 
 void GameScene::Init() {
+	pause = false;
 	p1.ChangeState(IDLE);
 	p2.ChangeState(IDLE);
 	drawWinText = false;
@@ -72,6 +73,7 @@ void GameScene::Init() {
 }
 
 void GameScene::Terminate() {
+	Drawable::projection = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f);
 	InputManager::Reconnect();
 }
 
@@ -103,6 +105,12 @@ void GameScene::OnUpdate() {
 }
 
 void GameScene::OnFixedUpdate() {
+	if (InputManager::GlobalPressed(Input_Delete))pause = !pause;
+	if (pause)background.col = glm::vec3(0.3f, 0.3f, 0.3f);
+	else background.col = glm::vec3(0.6f, 0.6f, 0.6f);
+
+	if (pause) return;
+
 	// warmup
 	if (warmup > 0) 
 	{
@@ -182,6 +190,7 @@ void GameScene::OnFixedUpdate() {
 	}
 	
 	if (p1.health <= 0 && p1.activeState->currentState == IDLE) {
+		p1hp.scale.x = 0;
 		winText.text = "P2 WINS";
 		p2.hitstop = 20;
 		p1.scale.y = PLAYER_SCALE.y / 2;
@@ -189,6 +198,7 @@ void GameScene::OnFixedUpdate() {
 		return;
 	}
 	if (p2.health <= 0 && p2.activeState->currentState == IDLE) {
+		p2hp.scale.x = 0;
 		winText.text = "P1 WINS";
 		p1.hitstop = 20;
 		p2.scale.y = PLAYER_SCALE.y / 2;

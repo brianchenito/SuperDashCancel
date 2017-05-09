@@ -15,10 +15,10 @@
 class InputManager
 {
 private:
-	static std::vector<InputDevice*> Devices;
 
 	static GLFWwindow* window;
 public:
+	static std::vector<InputDevice*> Devices;
 	static InputDevice* Player1Device;
 	static InputDevice* Player2Device;
 	static InputAI* robot;

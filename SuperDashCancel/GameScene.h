@@ -14,6 +14,7 @@ class GameScene :
 	int gameTime;
 	int winTimeOut;
 	int warmup;
+	bool pause;
 	DrawableSprite background;
 	DrawableSprite floor;
 	DrawableSprite decorativeLine1;
