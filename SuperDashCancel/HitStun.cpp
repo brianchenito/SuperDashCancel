@@ -27,7 +27,7 @@ void HitStun::FixedUpdate() {
 
 		if (flashtimer == 5) 
 		{
-			player->setColor(player->isPlayer1 ? PLAYER_ONE_COLOR + (glm::vec3(0.2f, 0.2f, 0.2f)*flash) : PLAYER_TWO_COLOR + (glm::vec3(0.2f, 0.2f, 0.2f)*flash));
+			player->setColor(player->isPlayer1 ? PLAYER_ONE_COLOR - (glm::vec3(0.2f, 0.2f, 0.2f)*flash) : PLAYER_TWO_COLOR - (glm::vec3(0.2f, 0.2f, 0.2f)*flash));
 			flash = !flash;
 			flashtimer = 0;
 		}

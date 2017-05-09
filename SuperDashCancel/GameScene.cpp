@@ -6,13 +6,13 @@ GameScene::GameScene(App *a, std::string label):Scene(a, label)
 {
 	drawWinText = false;
 	gameTime = 3600;
-	winTimeOut = 600;
+	winTimeOut = 300;
 
 	testDust = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(180, 79), glm::vec3(1, 1, 1), 4, 3);
 	testDust.loadTexture("../SuperDashCancel/textures/Sheet1.png", ALPHA);
 	testDust.leftOrigin = true;
 
-	background = DrawableSprite(glm::vec2(0, 0), glm::vec2(1280, 720), glm::vec3(0.8f,0.8f,0.8f));
+	background = DrawableSprite(glm::vec2(0, 0), glm::vec2(1280, 720), glm::vec3(0.6f,0.6f,0.6f));
 	background.loadTexture("../SuperDashCancel/textures/texture6.png", NOALPHA);
 
 	floor = DrawableSprite(glm::vec2(0, 0), glm::vec2(1280, 160), glm::vec3(.13f,.17f,.15f));
@@ -36,8 +36,8 @@ GameScene::GameScene(App *a, std::string label):Scene(a, label)
 	p2hp_back = DrawableSprite(glm::vec2(694, 686), glm::vec2(550, 20), glm::vec3(0.3f, 0.3f, 0.3f));
 	p2hp_back.loadTexture("../SuperDashCancel/textures/texture5.png", ALPHA);
 
-	winText = DrawableText(&app->fontengine, "", glm::vec2(520, 380), 1.0f, glm::vec3(0.3f, 0.3f, 0.3f));
-	gameTimeText = DrawableText(&app->fontengine, std::to_string(gameTime / 60), glm::vec2(625, 680), 0.4f, glm::vec3(0.3f, 0.3f, 0.3f));
+	winText = DrawableText(&app->fontengine, "", glm::vec2(520, 380), 1.0f, glm::vec3(0.9f, 0.9f, 0.85f));
+	gameTimeText = DrawableText(&app->fontengine, std::to_string(gameTime / 60), glm::vec2(625, 680), 0.4f, glm::vec3(0.9f, 0.9f, 0.85f));
 
 	p1 = PlayerCharacter(true);
 	p2 = PlayerCharacter(false);
@@ -61,16 +61,18 @@ void GameScene::Init() {
 	p1.ChangeState(IDLE);
 	p2.ChangeState(IDLE);
 	drawWinText = false;
+	warmup = 270;
 	gameTime = 3600;
-	winTimeOut = 600;
+	winTimeOut = 300;
 	p1.setPos(glm::vec2(520, 160));
 	p2.setPos(glm::vec2(760, 160));
 	p1.health = 1000;
 	p2.health = 1000;
+
 }
 
 void GameScene::Terminate() {
-
+	InputManager::Reconnect();
 }
 
 void GameScene::Draw() {
@@ -101,6 +103,32 @@ void GameScene::OnUpdate() {
 }
 
 void GameScene::OnFixedUpdate() {
+	// warmup
+	if (warmup > 0) 
+	{
+		drawWinText = true;
+		if (warmup > 179) 
+		{
+			winText.setPos(glm::vec2(520, 380));
+
+			winText.text = "Ready";
+		}
+		else 
+		{
+			winText.setPos(glm::vec2(620, 380));
+			winText.text = std::to_string((warmup / 60) + 1);
+
+		}
+		warmup--;
+		return;
+	}
+	else if (warmup == 0) 
+	{
+		drawWinText = false;
+		winText.setPos(glm::vec2(520, 380));
+		warmup--;
+	}
+	// normal gameplay
 	if (gameTime > 0 && !drawWinText) {
 		gameTimeText.text = std::to_string(gameTime / 60);
 		gameTime--;
@@ -114,6 +142,13 @@ void GameScene::OnFixedUpdate() {
 	}
 	else {
 		if (winTimeOut > 0) {
+			if (winTimeOut % 5 == 0) 
+			{
+				InputManager::Player1Device = 0;
+				InputManager::Player2Device = 0;
+				p1.FixedUpdate();
+				p2.FixedUpdate();
+			}
 			winTimeOut--;
 		}
 		else {
@@ -123,29 +158,39 @@ void GameScene::OnFixedUpdate() {
 		drawWinText = true;
 		if (p1.health < p2.health) 
 		{
+			p2.hitstop = 20;
 			winText.text = "P2 WINS";
 			p1.scale.y = PLAYER_SCALE.y / 2;
 		}
 			
 		else if (p1.health > p2.health) 
 		{
+			p1.hitstop = 20;
+
 			winText.text = "P1 WINS";
 			p2.scale.y = PLAYER_SCALE.y / 2;
 		}
 			
-		else
+		else 
+		{
 			winText.text = "DRAW";
+			p1.hitstop = 20;
+			p2.hitstop = 20;
+		}
+
 
 	}
 	
 	if (p1.health <= 0 && p1.activeState->currentState == IDLE) {
 		winText.text = "P2 WINS";
+		p2.hitstop = 20;
 		p1.scale.y = PLAYER_SCALE.y / 2;
 		drawWinText = true;
 		return;
 	}
 	if (p2.health <= 0 && p2.activeState->currentState == IDLE) {
 		winText.text = "P1 WINS";
+		p1.hitstop = 20;
 		p2.scale.y = PLAYER_SCALE.y / 2;
 		drawWinText = true;
 		return;

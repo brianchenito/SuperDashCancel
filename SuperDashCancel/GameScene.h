@@ -13,7 +13,7 @@ class GameScene :
 	bool drawWinText;
 	int gameTime;
 	int winTimeOut;
-
+	int warmup;
 	DrawableSprite background;
 	DrawableSprite floor;
 	DrawableSprite decorativeLine1;

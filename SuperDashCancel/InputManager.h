@@ -11,14 +11,17 @@
 #include "Input.h"
 #include "InputKeyboard.h"
 #include "InputJoyStick.h"
+#include "InputAI.h"
 class InputManager
 {
 private:
 	static std::vector<InputDevice*> Devices;
-	static InputDevice* Player1Device;
-	static InputDevice* Player2Device;
+
 	static GLFWwindow* window;
 public:
+	static InputDevice* Player1Device;
+	static InputDevice* Player2Device;
+	static InputAI* robot;
 
 	static void Init(GLFWwindow* window);
 

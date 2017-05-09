@@ -3,9 +3,12 @@ std::vector<InputDevice*> InputManager::Devices= std::vector<InputDevice*>();
 InputDevice* InputManager::Player1Device = 0;
 InputDevice* InputManager::Player2Device = 0;
 GLFWwindow* InputManager::window = 0;
+InputAI* InputManager::robot = 0;
 void InputManager::Init(GLFWwindow * window)
 {
 	InputManager::window = window;
+	robot = new InputAI(window);
+
 	glfwSetJoystickCallback(joystickCB);
 	//instantiate the default controllers, keyboard 1 and keyboard 2.
 	Devices.push_back(new InputKeyboard(window, true));
@@ -33,6 +36,7 @@ void InputManager::FixedStep()
 		//std::cout << Devices[i]->Label << "\n";
 		Devices[i]->FixedStep(); 
 	}
+	if(Player2Device==robot)robot->FixedStep();
 }
 
 void InputManager::Reconnect()
@@ -109,13 +113,15 @@ bool InputManager::GlobalHeld(Input b)
 
 bool InputManager::Pressed(Input b, bool isPlayer1)
 {
-	if (isPlayer1)return Player1Device->Pressed(b);
-	else return Player2Device->Pressed(b);
+	if (isPlayer1&&Player1Device!=0)return Player1Device->Pressed(b);
+	else if(!isPlayer1&&Player2Device != 0) return Player2Device->Pressed(b);
+	return false;
 }
 
 bool InputManager::Held(Input b, bool isPlayer1)
 {
-	if (isPlayer1)return Player1Device->Held(b);
-	else return Player2Device->Held(b);
+	if (isPlayer1&&Player1Device != 0)return Player1Device->Held(b);
+	else if (!isPlayer1&&Player2Device != 0) return Player2Device->Held(b);
+	return false;
 }
 

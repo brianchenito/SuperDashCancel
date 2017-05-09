@@ -14,7 +14,7 @@ LightDash::~LightDash()
 
 void LightDash::Enter()
 {
-	startup = 6;
+	startup = 3;
 	active = 12;
 	endlag = 16;
 	hitstop = 5;
@@ -26,6 +26,9 @@ void LightDash::Enter()
 	airborne = (player->pos.y > FLOOR_HEIGHT);
 	if (player->isEnemyLeft())direction = -1;
 	else direction = 1;
+	player->momentum = (glm::vec2( direction, 0));
+	player->dashDust.Reset();
+
 	Attack::Enter();
 
 }

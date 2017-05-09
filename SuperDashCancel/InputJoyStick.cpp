@@ -54,22 +54,47 @@ void InputJoyStick::FixedStep()
 			}
 			else held[Input_Right] = false;
 
-			if (axes[1] < -0.35f)
-			{
-				pressed[Input_Down] = !held[Input_Down];
-				held[Input_Down] = true;
-				inputThisFrame = true;
-			}
-			else held[Input_Down] = false;
 
-			if (axes[1] > 0.35f)
-			{
-				pressed[Input_Up] = !held[Input_Up];
-				held[Input_Up] = true;
-				inputThisFrame = true;
-			}
-			else held[Input_Up] = false;
 
+
+			if (((std::string)glfwGetJoystickName(FlagID)).find("360") != std::string::npos)
+			{
+				if (axes[1] < -0.35f)
+				{
+					pressed[Input_Down] = !held[Input_Down];
+					held[Input_Down] = true;
+					inputThisFrame = true;
+
+				}
+				else held[Input_Down] = false;
+
+				if (axes[1] > 0.35f)
+				{
+					pressed[Input_Up] = !held[Input_Up];
+					held[Input_Up] = true;
+					inputThisFrame = true;
+				}
+				else held[Input_Up] = false;
+			}
+			else 
+			{
+				if (axes[1] > 0.35f)
+				{
+					pressed[Input_Down] = !held[Input_Down];
+					held[Input_Down] = true;
+					inputThisFrame = true;
+
+				}
+				else held[Input_Down] = false;
+
+				if (axes[1] < -0.35f)
+				{
+					pressed[Input_Up] = !held[Input_Up];
+					held[Input_Up] = true;
+					inputThisFrame = true;
+				}
+				else held[Input_Up] = false;
+			}
 
 		}
 		int buttoncount;

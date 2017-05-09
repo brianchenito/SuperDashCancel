@@ -11,7 +11,7 @@ MainMenuScene::MainMenuScene(App * a, std::string label):Scene(a, label)
 
 	UnselectedButtonColor = glm::vec3(0.6f, 0.6f, 0.6f);
 	SelectedButtonColor = glm::vec3(0.6f, 0.3f, 0.3f);
-	buttonsp = ButtonLaunchMP(app, &app->fontengine, "Single player", glm::vec2(290, 370), 0.55f, SelectedButtonColor);
+	buttonsp = ButtonLaunchSP(app, &app->fontengine, "Single player", glm::vec2(290, 370), 0.55f, SelectedButtonColor);
 	buttonmp = ButtonLaunchMP(app, &app->fontengine, "Two Player Vs", glm::vec2(700, 370), 0.50f, UnselectedButtonColor);
 	buttonsp.AttachNeighbors(0, 0, 0, &buttonmp);
 	buttonmp.AttachNeighbors(0, 0, &buttonsp, 0);
@@ -26,6 +26,7 @@ MainMenuScene::~MainMenuScene()
 void MainMenuScene::Init()
 {
 	bgpower = 1;
+	InputManager::Reconnect();
 }
 
 void MainMenuScene::Terminate()

@@ -16,7 +16,7 @@ PlayerCharacter::PlayerCharacter(bool player1)
 	health = 1000;
 	skew = 0;
 
-	lPunch = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(64, 120), player1?glm::vec3(0.35f,0.873f,0.93f):glm::vec3(0.96f,0.53f,0.32f), 3, 2);
+	lPunch = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(64, 120), player1?glm::vec3(0.35f,0.873f,0.93f):glm::vec3(0.96f,0.73f,0.62f), 3, 2);
 	lPunch.loadTexture("../SuperDashCancel/textures/Sheet2.png", ALPHA);
 	dashDust= DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(180, 79), glm::vec3(1,1,1), 4, 3);
 	dashDust.loadTexture("../SuperDashCancel/textures/Sheet1.png", ALPHA);

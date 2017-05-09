@@ -111,7 +111,13 @@
     <ClCompile Include="DrawableSpriteSheet.cpp">
       <Filter>Drawable</Filter>
     </ClCompile>
-    <ClCompile Include="LightDash.cpp" />
+    <ClCompile Include="InputAI.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="LightDash.cpp">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonLaunchSP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drawable.h">
@@ -273,6 +279,12 @@
     <ClInclude Include="DrawableSpriteSheet.h">
       <Filter>Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="LightDash.h" />
+    <ClInclude Include="InputAI.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="LightDash.h">
+      <Filter>PlayerCharacter\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonLaunchSP.h" />
   </ItemGroup>
 </Project>

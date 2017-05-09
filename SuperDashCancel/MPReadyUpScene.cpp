@@ -11,17 +11,17 @@ MPReadyUpScene::MPReadyUpScene(App * a, std::string label):Scene(a,label)
 	bg.loadTexture("../SuperDashCancel/textures/texture2.png", NOALPHA);
 
 	// setup icons
-	p1Blank = DrawableSprite( glm::vec2(400,310),glm::vec2(128,128), glm::vec3(0.3f, 0.3f, 0.3f));
+	p1Blank = DrawableSprite( glm::vec2(400,305),glm::vec2(128,128), glm::vec3(0.3f, 0.3f, 0.3f));
 	p1Blank.loadTexture("../SuperDashCancel/textures/texture1.png", ALPHA);
 
-	p2Blank = DrawableSprite( glm::vec2(735, 310), glm::vec2(128, 128), glm::vec3(0.3f, 0.3f, 0.3f));
+	p2Blank = DrawableSprite( glm::vec2(735, 305), glm::vec2(128, 128), glm::vec3(0.3f, 0.3f, 0.3f));
 	p2Blank.loadTexture("../SuperDashCancel/textures/texture1.png", ALPHA);
 	p1Scale = 0.0f;
 	p2Scale = 0.0f;
-	p1Symbol = DrawableSprite( glm::vec2(400, 310), glm::vec2(128, 128) * p1Scale, PLAYER_ONE_COLOR);
+	p1Symbol = DrawableSprite( glm::vec2(400, 310), glm::vec2(128, 122) * p1Scale, PLAYER_ONE_COLOR);
 	p1Symbol.loadTexture("../SuperDashCancel/textures/texture4.png", ALPHA);
 
-	p2Symbol = DrawableSprite( glm::vec2(735, 310), glm::vec2(128, 128) * p2Scale, PLAYER_TWO_COLOR);
+	p2Symbol = DrawableSprite( glm::vec2(735, 310), glm::vec2(128, 122) * p2Scale, PLAYER_TWO_COLOR);
 	p1Symbol.loadTexture("../SuperDashCancel/textures/texture4.png", ALPHA);
 	//setup text
 	Instruct = DrawableText(&app->fontengine, "Hold Button 1 to Ready Up", glm::vec2(422, 200), 0.4f, glm::vec3(0.3f, 0.3f, 0.3f));
@@ -39,8 +39,6 @@ void MPReadyUpScene::Init()
 	//std::cout << "Default Controls:\n Player 1: WASD, V,B\n Player 2: Arrow Keys, '.','/'\n\nPlug in Controllers to override\n";
 	p1Scale = 0.0f;
 	p2Scale = 0.0f;
-	p1Symbol.setScale(glm::vec2(0.27, 0.16* p1Scale));
-	p2Symbol.setScale(glm::vec2(0.27, 0.16* p2Scale));
 
 
 }
@@ -69,6 +67,7 @@ void MPReadyUpScene::OnUpdate()
 
 void MPReadyUpScene::OnFixedUpdate()
 {
+
 	if (InputManager::GlobalPressed(Input_Heavy) || InputManager::GlobalPressed(Input_Delete))
 	{
 		app->SwitchScene("MainMenuScreen");
@@ -76,26 +75,28 @@ void MPReadyUpScene::OnFixedUpdate()
 	if (InputManager::Held(Input_Light, true)&&p1Scale<1) 
 	{
 		p1Scale += 0.05f;
-		p1Symbol.setScale(glm::vec2(128, 128* p1Scale) );
 	}
 	else if(p1Scale < 1&&p1Scale>0) 
 	{
 		p1Scale -= 0.1f;
-		p1Symbol.setScale(glm::vec2(128, 128 * p1Scale));
 
 	}
 
 	if (InputManager::Held(Input_Light, false) && p2Scale<1)
 	{
 		p2Scale += 0.05f;
-		p2Symbol.setScale(glm::vec2(128, 128 * p2Scale));
 	}
 	else if (p2Scale < 1&&p2Scale>0)
 	{
 		p2Scale -= 0.1f;
-		p2Symbol.setScale(glm::vec2(128, 128 * p2Scale));
 
 	}
+	if (p1Scale < 0)p1Scale = 0;
+	if (p2Scale < 0)p2Scale = 0;
+	if (p1Scale > 1)p1Scale = 1;
+	if (p2Scale > 1)p2Scale = 1;
+	p2Symbol.setScale(glm::vec2(128, 123 * p2Scale));
+	p1Symbol.setScale(glm::vec2(128, 123 * p1Scale));
 	if (p1Scale >= 1 && p2Scale >= 1) 
 	{
 		std::cout << "LAUNCH\n";

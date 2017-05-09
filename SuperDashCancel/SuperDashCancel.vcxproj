@@ -137,6 +137,7 @@
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonLaunchMP.cpp" />
+    <ClCompile Include="ButtonLaunchSP.cpp" />
     <ClCompile Include="Crouch.cpp" />
     <ClCompile Include="CrouchBlock.cpp" />
     <ClCompile Include="Drawable.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="HitStun.cpp" />
     <ClCompile Include="Idle.cpp" />
+    <ClCompile Include="InputAI.cpp" />
     <ClCompile Include="InputDevice.cpp" />
     <ClCompile Include="InputJoyStick.cpp" />
     <ClCompile Include="InputKeyboard.cpp" />
@@ -166,6 +168,7 @@
     <ClInclude Include="Attack.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonLaunchMP.h" />
+    <ClInclude Include="ButtonLaunchSP.h" />
     <ClInclude Include="Crouch.h" />
     <ClInclude Include="CrouchBlock.h" />
     <ClInclude Include="Drawable.h" />
@@ -200,6 +203,7 @@
     <ClInclude Include="HitStun.h" />
     <ClInclude Include="Idle.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="InputAI.h" />
     <ClInclude Include="InputDevice.h" />
     <ClInclude Include="InputJoyStick.h" />
     <ClInclude Include="InputKeyboard.h" />

@@ -3,8 +3,7 @@
 #define SDC_BUTTON_LAUNCHMP_H
 #include "Button.h"
 #include "App.h"
-class ButtonLaunchMP :
-	public Button
+class ButtonLaunchMP :public Button
 {
 	App* app;
 public:

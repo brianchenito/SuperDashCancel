@@ -5,6 +5,7 @@
 #include "App.h"
 #include "DrawableSprite.h"
 #include "ButtonLaunchMP.h"
+#include "ButtonLaunchSP.h"
 #include "DrawableText.h"
 #include <math.h>
 
@@ -13,7 +14,7 @@ class MainMenuScene :public App::Scene
 
 	float bgpower;
 	DrawableSprite bg;
-	ButtonLaunchMP buttonsp;
+	ButtonLaunchSP buttonsp;
 	ButtonLaunchMP buttonmp;
 	Button* activeButton;
 	glm::vec3 SelectedButtonColor;
