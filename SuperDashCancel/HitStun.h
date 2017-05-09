@@ -3,6 +3,9 @@
 class HitStun :
 	public PlayerState
 {
+private:
+	bool flash;
+	int flashtimer;
 public:
 	int stunLength;
 	glm::vec2 knockback;

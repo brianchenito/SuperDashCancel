@@ -125,7 +125,10 @@ void PlayerCharacter::FixedUpdate() {
 
 void PlayerCharacter::ChangeState(PlayerStates pstate) {
 	if (stateMap.find(pstate) != stateMap.end()) {
-		if (pstate == AIRBORNE&&pos.y > FLOOR_HEIGHT)return;// cant jump unless grounded
+		if (pos.y > FLOOR_HEIGHT) // entry restricts for grounded only states
+		{
+			if (pstate == AIRBORNE||pstate==HEAVY_SLIDE||pstate==LIGHT_SLIDE)return;
+		}
 		if (activeState) activeState->Exit();
 		activeState = stateMap[pstate];
 		activeState->Enter();

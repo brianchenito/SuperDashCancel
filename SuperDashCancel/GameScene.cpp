@@ -164,4 +164,5 @@ void GameScene::PopulateStateMap(PlayerCharacter* p) {
 	p->stateMap[AIRBORNE] = new Airborne(p, AIRBORNE);
 	p->stateMap[HIT_STUN] = new HitStun(p, HIT_STUN);
 	p->stateMap[LIGHT_ATTACK] = new LightAttack(p, LIGHT_ATTACK);
+	p->stateMap[LIGHT_DASH] = new LightDash(p, LIGHT_DASH);
 }

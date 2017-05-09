@@ -18,11 +18,12 @@ void LightAttack::Enter()
 	active = 3;
 	endlag = 8;
 	hitstop = 5;
-	hitstun = 13;
+	hitstun = 17;
+	blockstun = 15;
 	damage = 25;
-	knockback = glm::vec2(10, 0);
+	knockback = glm::vec2(5, 0);
 	hitbox = glm::vec4(60, 0, 80, 80);
-
+	airborne = (player->pos.y > FLOOR_HEIGHT);
 	Attack::Enter();
 	player->lPunch.Reset();
 	if (player->isEnemyLeft())player->SmoothSkew(20.0f, 0.6f);

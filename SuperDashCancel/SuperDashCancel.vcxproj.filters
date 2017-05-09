@@ -111,6 +111,7 @@
     <ClCompile Include="DrawableSpriteSheet.cpp">
       <Filter>Drawable</Filter>
     </ClCompile>
+    <ClCompile Include="LightDash.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drawable.h">
@@ -272,5 +273,6 @@
     <ClInclude Include="DrawableSpriteSheet.h">
       <Filter>Drawable</Filter>
     </ClInclude>
+    <ClInclude Include="LightDash.h" />
   </ItemGroup>
 </Project>

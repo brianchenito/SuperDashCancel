@@ -24,11 +24,30 @@ void Attack::FixedUpdate() {
 		if (!cancel&&DetectHit()) {
 			player->hitstop = hitstop;
 			player->enemy->hitstop = hitstop;
-			player->enemy->health -= damage;
-			((HitStun*)(player->enemy->stateMap[HIT_STUN]))->stunLength = hitstun;
-			((HitStun*)(player->enemy->stateMap[HIT_STUN]))->knockback = knockback;
-			player->enemy->ChangeState(HIT_STUN);
 			cancel = true;
+			// check for blocks
+			if (
+				(airborne&&player->enemy->activeState->currentState == MOVE_BACKWARD)
+				||(low&&player->enemy->activeState->currentState == CROUCH_BLOCK)
+				||(!low&&player->enemy->activeState->currentState == CROUCH_BLOCK)
+				|| (!low&&player->enemy->activeState->currentState == MOVE_BACKWARD)
+				) 
+			{
+				std::cout << "Blocked Attack";
+				player->enemy->blockstun = blockstun;
+				player->enemy->momentum = glm::vec2(player->isEnemyLeft()?-knockback.x:knockback.x,knockback.y);
+			}
+			else 
+			{// hitconfirm
+				player->enemy->health -= damage;
+				((HitStun*)(player->enemy->stateMap[HIT_STUN]))->stunLength = hitstun;
+				((HitStun*)(player->enemy->stateMap[HIT_STUN]))->knockback = knockback;
+				player->enemy->ChangeState(HIT_STUN);
+			}
+
+			
+
+			
 		}
 		return;
 	}

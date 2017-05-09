@@ -52,6 +52,7 @@ public:
 	std::deque<PlayerStates> statebuffer;
 	int health;
 	int hitstop;
+	int blockstun;
 	bool isPlayer1; 
 	float skew;
 	glm::vec2 momentum;

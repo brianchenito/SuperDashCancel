@@ -1,15 +1,16 @@
 #pragma once
 #include "Attack.h"
-class LightAttack :
+class LightDash :
 	public Attack
 {
+private:
+	int direction;
 public:
-	LightAttack(PlayerCharacter* p, PlayerStates pstate);
-	~LightAttack();
+	LightDash(PlayerCharacter* p, PlayerStates pstate);
+	~LightDash();
 	void Enter();
 	void FixedUpdate();
 	void Exit();
 	void EndLag();
-
 };
 

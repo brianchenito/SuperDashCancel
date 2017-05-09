@@ -152,6 +152,7 @@
     <ClCompile Include="InputKeyboard.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LightAttack.cpp" />
+    <ClCompile Include="LightDash.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="MoveBackward.cpp" />
     <ClCompile Include="MoveForward.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="InputKeyboard.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LightAttack.h" />
+    <ClInclude Include="LightDash.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="MoveBackward.h" />
     <ClInclude Include="MoveForward.h" />

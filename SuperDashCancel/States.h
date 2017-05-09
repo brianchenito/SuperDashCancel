@@ -8,3 +8,4 @@
 #include "Airborne.h"
 #include "HitStun.h"
 #include "LightAttack.h"
+#include "LightDash.h"
