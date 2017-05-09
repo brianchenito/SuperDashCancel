@@ -210,6 +210,9 @@ void GameScene::PopulateStateMap(PlayerCharacter* p) {
 	p->stateMap[HIT_STUN] = new HitStun(p, HIT_STUN);
 	p->stateMap[LIGHT_ATTACK] = new LightAttack(p, LIGHT_ATTACK);
 	p->stateMap[HEAVY_ATTACK] = new HeavyAttack(p, HEAVY_ATTACK);
+	p->stateMap[HEAVY_CROUCH_ATTACK] = new HeavyAttack(p, HEAVY_CROUCH_ATTACK);
+	p->stateMap[LIGHT_CROUCH_ATTACK] = new LightAttack(p, LIGHT_CROUCH_ATTACK);
+
 
 	p->stateMap[LIGHT_DASH] = new LightDash(p, LIGHT_DASH);
 	p->stateMap[HEAVY_DASH] = new LightDash(p, HEAVY_DASH);
