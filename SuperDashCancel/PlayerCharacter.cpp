@@ -18,6 +18,8 @@ PlayerCharacter::PlayerCharacter(bool player1)
 
 	lPunch = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(64, 120), player1?glm::vec3(0.35f,0.873f,0.93f):glm::vec3(0.96f,0.73f,0.62f), 3, 2);
 	lPunch.loadTexture("../SuperDashCancel/textures/Sheet2.png", ALPHA);
+	//lPunch = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(128	, 162), player1?glm::vec3(0.35f,0.873f,0.93f):glm::vec3(0.96f,0.73f,0.62f), 3, 2);
+	//lPunch.loadTexture("../SuperDashCancel/textures/Sheet3.png", ALPHA);
 	dashDust= DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(180, 79), glm::vec3(1,1,1), 4, 3);
 	dashDust.loadTexture("../SuperDashCancel/textures/Sheet1.png", ALPHA);
 	enemy = 0;
@@ -40,7 +42,6 @@ void PlayerCharacter::Draw() {
 
 	glm::vec2 coords = Drawable::projection*glm::vec4(pos.x, pos.y, 0, 1);
 	glm::vec2 coords2 = Drawable::projection*glm::vec4(pos.x + scale.x, pos.y + scale.y, 0, 1);
-	//std::cout << coords.x << " " << coords.y << "\n";
 	glTexCoord2f(0.0, 1.0);
 	glVertex2f(coords.x, coords.y);
 
@@ -67,13 +68,13 @@ void PlayerCharacter::Draw() {
 void PlayerCharacter::FixedUpdate() {
 
 	EnqueueStates();
-
-
 	// dont do gameplay stuff if hitstop
 	if (hitstop > 0) 
 	{
-		Drawable::projection = glm::ortho(0.0f, 1280.0f + (rand() % hitstop - hitstop / 2), 0.0f, 720.0f + (rand() % hitstop - hitstop / 2));
-		hitstop--; return;
+		// cause hitstop is global
+		if(isPlayer1)Drawable::projection = glm::ortho(0.0f, 1280.0f + (rand() % hitstop - hitstop / 2), 0.0f, 720.0f + (rand() % hitstop - hitstop / 2));
+		hitstop--; 
+		return;
 
 	}
 	if (hitstop == 0)
@@ -362,13 +363,6 @@ void PlayerCharacter::EnqueueStates()
 			else statebuffer.push_front(HEAVY_ATTACK);
 		}
 	}
-	/*
-	for (int i = 0; i < statebuffer.size(); i++) 
-	{
-		std::cout << statebuffer[i] << ",";
-	}
-	std::cout << std::endl;
-	*/
 }
 
 void PlayerCharacter::SmoothScale(glm::vec2 newscale, float weight)

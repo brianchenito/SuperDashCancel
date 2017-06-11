@@ -8,9 +8,6 @@ GameScene::GameScene(App *a, std::string label):Scene(a, label)
 	gameTime = 3600;
 	winTimeOut = 300;
 
-	testDust = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(180, 79), glm::vec3(1, 1, 1), 4, 3);
-	testDust.loadTexture("../SuperDashCancel/textures/Sheet1.png", ALPHA);
-	testDust.leftOrigin = true;
 
 	background = DrawableSprite(glm::vec2(0, 0), glm::vec2(1280, 720), glm::vec3(0.6f,0.6f,0.6f));
 	background.loadTexture("../SuperDashCancel/textures/texture6.png", NOALPHA);
@@ -59,17 +56,24 @@ GameScene::~GameScene()
 
 void GameScene::Init() {
 	pause = false;
-	p1.ChangeState(IDLE);
-	p2.ChangeState(IDLE);
+
 	drawWinText = false;
 	warmup = 240;
 	gameTime = 3600;
 	winTimeOut = 300;
+	// reset
+	p1.ChangeState(IDLE);
+	p2.ChangeState(IDLE);
 	p1.setPos(glm::vec2(520, 160));
 	p2.setPos(glm::vec2(760, 160));
+	p1.skew = 0;
+	p2.skew = 0;
+	p1.scale = PLAYER_SCALE;
+	p2.scale = PLAYER_SCALE;
+
 	p1.health = 1000;
 	p2.health = 1000;
-
+	OnFixedUpdate();
 }
 
 void GameScene::Terminate() {
@@ -97,7 +101,6 @@ void GameScene::Draw() {
 	decorativeLine2.Draw();
 	gameTimeText.Draw();
 	if (drawWinText) winText.Draw();
-	testDust.Draw();
 }
 
 void GameScene::OnUpdate() {
@@ -220,8 +223,8 @@ void GameScene::PopulateStateMap(PlayerCharacter* p) {
 	p->stateMap[HIT_STUN] = new HitStun(p, HIT_STUN);
 	p->stateMap[LIGHT_ATTACK] = new LightAttack(p, LIGHT_ATTACK);
 	p->stateMap[HEAVY_ATTACK] = new HeavyAttack(p, HEAVY_ATTACK);
-	p->stateMap[HEAVY_CROUCH_ATTACK] = new HeavyAttack(p, HEAVY_CROUCH_ATTACK);
-	p->stateMap[LIGHT_CROUCH_ATTACK] = new LightAttack(p, LIGHT_CROUCH_ATTACK);
+	p->stateMap[HEAVY_CROUCH_ATTACK] = new HeavyAttack(p, HEAVY_CROUCH_ATTACK);// temp
+	p->stateMap[LIGHT_CROUCH_ATTACK] = new LightAttack(p, LIGHT_CROUCH_ATTACK);//temp
 
 
 	p->stateMap[LIGHT_DASH] = new LightDash(p, LIGHT_DASH);

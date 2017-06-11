@@ -39,7 +39,7 @@ void Attack::FixedUpdate() {
 				std::cout << "Blocked Attack";
 				
 				player->enemy->blockstun = blockstun;
-				player->enemy->momentum = glm::vec2(player->isEnemyLeft()?-knockback.x/3.0f:knockback.x/3.0f,knockback.y);
+				player->enemy->momentum = glm::vec2(player->isEnemyLeft()?-knockback.x/3.0f:knockback.x/3.0f,0);
 			}
 			else 
 			{// hitconfirm
