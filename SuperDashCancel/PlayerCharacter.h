@@ -20,7 +20,6 @@ class PlayerState
 {
 public:
 	PlayerStates currentState;
-
 	PlayerCharacter* player;
 
 	PlayerState(PlayerCharacter* p, PlayerStates pstate) {
@@ -49,6 +48,7 @@ private:
 public:
 	DrawableSpriteSheet lPunch;
 	DrawableSpriteSheet dashDust;
+	DrawableSpriteSheet block;
 	std::deque<PlayerStates> statebuffer;
 	int health;
 	int hitstop;
@@ -58,6 +58,7 @@ public:
 	glm::vec2 momentum;
 	PlayerCharacter* enemy;
 	PlayerState* activeState;
+	PlayerState* bufferedState;
 	std::map<PlayerStates, PlayerState*> stateMap;
 
 	PlayerCharacter();
@@ -65,7 +66,9 @@ public:
 	~PlayerCharacter();
 
 	void Draw();
-
+	void DrawSheetsBehind();
+	void DrawSheetsInFront();
+	void ClearSheets();
 	void FixedUpdate();
 	void ChangeState(PlayerStates pstate);
 	void SetEnemyPlayer(PlayerCharacter* e);

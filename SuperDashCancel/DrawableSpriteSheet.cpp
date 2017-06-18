@@ -10,6 +10,13 @@ void DrawableSpriteSheet::Reset()
 
 }
 
+void DrawableSpriteSheet::Clear()
+{
+	by2 = false;
+	indexh = h;
+	indexw = w;
+}
+
 DrawableSpriteSheet::DrawableSpriteSheet()
 {
 }

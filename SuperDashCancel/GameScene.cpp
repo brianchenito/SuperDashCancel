@@ -36,6 +36,7 @@ GameScene::GameScene(App *a, std::string label):Scene(a, label)
 	winText = DrawableText(&app->fontengine, "", glm::vec2(520, 380), 1.0f, glm::vec3(0.9f, 0.9f, 0.85f));
 	gameTimeText = DrawableText(&app->fontengine, std::to_string(gameTime / 60), glm::vec2(625, 680), 0.4f, glm::vec3(0.9f, 0.9f, 0.85f));
 
+	PauseText = DrawableText(&app->fontengine, "PAUSED", glm::vec2(505, 380), 1.0f, glm::vec3(0.9f, 0.9f, 0.85f));
 	p1 = PlayerCharacter(true);
 	p2 = PlayerCharacter(false);
 
@@ -62,6 +63,8 @@ void GameScene::Init() {
 	gameTime = 3600;
 	winTimeOut = 300;
 	// reset
+	p1.ClearSheets();
+	p2.ClearSheets();
 	p1.ChangeState(IDLE);
 	p2.ChangeState(IDLE);
 	p1.setPos(glm::vec2(520, 160));
@@ -84,15 +87,12 @@ void GameScene::Terminate() {
 void GameScene::Draw() {
 	background.Draw();
 	floor.Draw();
-
+	p1.DrawSheetsBehind();
+	p2.DrawSheetsBehind();
 	p1.Draw();
 	p2.Draw();
-	if(p1.pos.y<=FLOOR_HEIGHT)p1.dashDust.Draw();
-	if (p2.pos.y <= FLOOR_HEIGHT)p2.dashDust.Draw();
-	p1.lPunch.Draw();
-	p2.lPunch.Draw();// draw spritesheets on top
-
-
+	p1.DrawSheetsInFront();
+	p2.DrawSheetsInFront();
 	p1hp_back.Draw();
 	p2hp_back.Draw();
 	p1hp.Draw();
@@ -100,6 +100,7 @@ void GameScene::Draw() {
 	decorativeLine1.Draw();
 	decorativeLine2.Draw();
 	gameTimeText.Draw();
+	if(pause)PauseText.Draw();
 	if (drawWinText) winText.Draw();
 }
 
@@ -109,10 +110,13 @@ void GameScene::OnUpdate() {
 
 void GameScene::OnFixedUpdate() {
 	if (InputManager::GlobalPressed(Input_Delete))pause = !pause;
-	if (pause)background.col = glm::vec3(0.3f, 0.3f, 0.3f);
+	if (pause) 
+	{
+		drawWinText = false;
+		background.col = glm::vec3(0.3f, 0.3f, 0.3f);
+		return;
+	}
 	else background.col = glm::vec3(0.6f, 0.6f, 0.6f);
-
-	if (pause) return;
 
 	// warmup
 	if (warmup > 0) 
@@ -121,14 +125,12 @@ void GameScene::OnFixedUpdate() {
 		if (warmup > 179) 
 		{
 			winText.setPos(glm::vec2(520, 380));
-
 			winText.text = "Ready";
 		}
 		else 
 		{
 			winText.setPos(glm::vec2(620, 380));
 			winText.text = std::to_string((warmup / 60) + 1);
-
 		}
 		warmup--;
 		return;

@@ -4,6 +4,7 @@ PlayerCharacter::PlayerCharacter() {}
 
 PlayerCharacter::PlayerCharacter(bool player1)
 {
+	bufferedState = 0;
 	isPlayer1 = player1;
 
 	if (isPlayer1) col = PLAYER_ONE_COLOR;
@@ -18,8 +19,8 @@ PlayerCharacter::PlayerCharacter(bool player1)
 
 	lPunch = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(64, 120), player1?glm::vec3(0.35f,0.873f,0.93f):glm::vec3(0.96f,0.73f,0.62f), 3, 2);
 	lPunch.loadTexture("../SuperDashCancel/textures/Sheet2.png", ALPHA);
-	//lPunch = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(128	, 162), player1?glm::vec3(0.35f,0.873f,0.93f):glm::vec3(0.96f,0.73f,0.62f), 3, 2);
-	//lPunch.loadTexture("../SuperDashCancel/textures/Sheet3.png", ALPHA);
+	block = DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(128	, 162), player1?glm::vec3(0.35f,0.873f,0.93f):glm::vec3(0.96f,0.73f,0.62f), 3, 2);
+	block.loadTexture("../SuperDashCancel/textures/Sheet3.png", ALPHA);
 	dashDust= DrawableSpriteSheet(glm::vec2(0, 0), glm::vec2(180, 79), glm::vec3(1,1,1), 4, 3);
 	dashDust.loadTexture("../SuperDashCancel/textures/Sheet1.png", ALPHA);
 	enemy = 0;
@@ -65,8 +66,35 @@ void PlayerCharacter::Draw() {
 
 }
 
-void PlayerCharacter::FixedUpdate() {
+void PlayerCharacter::DrawSheetsBehind()
+{
+	if(pos.y == FLOOR_HEIGHT)dashDust.Draw();
+}
 
+void PlayerCharacter::DrawSheetsInFront()
+{
+	lPunch.Draw();
+	block.Draw();
+
+}
+
+void PlayerCharacter::ClearSheets()
+{
+	lPunch.Clear();
+	dashDust.Clear();
+	block.Clear();
+}
+
+void PlayerCharacter::FixedUpdate() {
+	// 	resolve buffered state changes
+	if (bufferedState) 
+	{
+		if (activeState) activeState->Exit();
+		activeState = bufferedState;
+		activeState->Enter();
+		bufferedState = 0;
+
+	}
 	EnqueueStates();
 	// dont do gameplay stuff if hitstop
 	if (hitstop > 0) 
@@ -114,6 +142,13 @@ void PlayerCharacter::FixedUpdate() {
 	else lPunch.pos.x += 70;
 	lPunch.FixedStep();
 
+	block.leftOrigin = !isEnemyLeft();
+	block.pos = pos;
+	block.pos.y += 40;
+	if (isEnemyLeft())block.pos.x -= 40;
+	else block.pos.x += 40;
+	block.FixedStep();
+
 	dashDust.leftOrigin = (momentum.x > 0);
 
 	dashDust.pos = pos;
@@ -130,10 +165,8 @@ void PlayerCharacter::ChangeState(PlayerStates pstate) {
 		{
 			if (pstate == CROUCH_BLOCK || pstate == CROUCH||pstate == AIRBORNE||pstate==HEAVY_SLIDE||pstate==LIGHT_SLIDE)return;
 		}
-		if (activeState) activeState->Exit();
-		activeState = stateMap[pstate];
-		activeState->Enter();
-		
+		bufferedState=stateMap[pstate];
+
 	}
 	else {
 		std::cout << "ChangeState attempt failed: " << pstate << " is not a valid state" << std::endl;
@@ -246,21 +279,26 @@ void PlayerCharacter::EnqueueStates()
 
 		if (InputManager::Held(Input_Right, isPlayer1))horz++;
 		if (InputManager::Held(Input_Left, isPlayer1))horz--;
+		//enqueue commands
+		if (vert == 0)
+		{
+			if (horz == 1)inputbuffer.push_front(Input_Right);
+			else if (horz == -1)inputbuffer.push_front(Input_Left);
+		}
+		else if (horz == 0)
+		{
+			if (vert == 1)inputbuffer.push_front(Input_Up);
+			else if (vert == -1)inputbuffer.push_front(Input_Down);
+		}
+		else 
+		{
+			if (horz == 1 && vert == 1) inputbuffer.push_front(Input_UpR);
+			else if (horz == -1 && vert == 1) inputbuffer.push_front(Input_UpL);
+			else if (horz == 1 && vert == -1) inputbuffer.push_front(Input_DownR);
+			else if (horz == -1 && vert == -1) inputbuffer.push_front(Input_UpL);
+		}
 	}
-	if (vert == 0) 
-	{
-		if (horz == 1)inputbuffer.push_front(Input_Right);
-		if (horz == -1)inputbuffer.push_front(Input_Left);
-	}
-	if (horz == 0)
-	{
-		if (vert == 1)inputbuffer.push_front(Input_Up);
-		if (vert == -1)inputbuffer.push_front(Input_Down);
-	}
-	if (horz == 1 && vert == 1) inputbuffer.push_front(Input_UpR);
-	if (horz == -1 && vert == 1) inputbuffer.push_front(Input_UpL);
-	if (horz == 1 && vert == -1) inputbuffer.push_front(Input_DownR);
-	if (horz == -1 && vert == -1) inputbuffer.push_front(Input_UpL);
+
 
 	if (InputManager::Pressed(Input_Light, isPlayer1))
 	{
@@ -274,16 +312,19 @@ void PlayerCharacter::EnqueueStates()
 		statetimer = 14;
 		inputbuffer.push_front(Input_Heavy);
 	}
-
+	
 	// long ass conditional checks to enqueue state conditions
+
 	if (inputbuffer.size() >= 2 && (inputbuffer[0] == Input_Left&&inputbuffer[1] == Input_Left)) 
 	{
+
 		if (!isEnemyLeft())statebuffer.push_front(BACK_DASH);
 		else statebuffer.push_front(FORWARD_DASH);
 		inputbuffer.clear();
 	}
 	if (inputbuffer.size() >= 2 && (inputbuffer[0] == Input_Right&&inputbuffer[1] == Input_Right))
 	{
+
 		if (isEnemyLeft())statebuffer.push_front(BACK_DASH);
 		else statebuffer.push_front(FORWARD_DASH);
 		inputbuffer.clear();

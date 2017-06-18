@@ -32,6 +32,7 @@ class GameScene :
 
 	DrawableText winText;
 	DrawableText gameTimeText;
+	DrawableText PauseText;
 		
 
 public:

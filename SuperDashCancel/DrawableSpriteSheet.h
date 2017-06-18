@@ -8,6 +8,7 @@ class DrawableSpriteSheet :public DrawableSprite
 	bool by2;
 public:
 	void Reset();
+	void Clear();
 	bool leftOrigin;
 	DrawableSpriteSheet();
 	DrawableSpriteSheet(glm::vec2 Pos, glm::vec2 Scale, glm::vec3 Color, int horiz, int vert);
