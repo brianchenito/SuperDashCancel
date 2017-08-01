@@ -12,6 +12,8 @@ HitStun::~HitStun()
 }
 
 void HitStun::Enter() {
+	player->lPunch.Clear();
+	player->block.Clear();
 	flash = true;
 	flashtimer = 0;
 	player->momentum.y += knockback.y;
