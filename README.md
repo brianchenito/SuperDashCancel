@@ -1,7 +1,7 @@
 # SuperDashCancel
 A Minimalist Fighting Game.
 
-![](https://gfycat.com/plumpplumpcrocodileskink.gif)
+![](https://thumbs.gfycat.com/PlumpPlumpCrocodileskink-size_restricted.gif)
 
 Developed by Brian Chen and Joseph Kotlarek.
 # Current Features:
